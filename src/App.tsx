@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from 'react';
 import { useLocalStorage } from './hooks/useLocalStorage';
+import { useFirestoreEntries } from './hooks/useFirestoreEntries';
 import { useAuth } from './hooks/useAuth';
 import { LS_KEY, LS_PROFILE_KEY, SURFER_EMOJIS } from './constants';
 import type { Entry } from './types';
@@ -11,7 +12,17 @@ import SignInPrompt from './components/SignInPrompt';
 
 export default function App() {
   const { user, loading } = useAuth();
-  const [entries, setEntries] = useLocalStorage<Entry[]>(LS_KEY, []);
+
+  // Local storage for anonymous / first-entry users
+  const [localEntries, setLocalEntries] = useLocalStorage<Entry[]>(LS_KEY, []);
+
+  // Firestore for signed-in users
+  const firestore = useFirestoreEntries(user?.uid ?? null);
+
+  // Use Firestore entries when signed in, localStorage when not
+  const entries = user ? firestore.entries : localEntries;
+  const firestoreLoading = user ? firestore.loading : false;
+
   const [profile, setProfile] = useLocalStorage<{ name: string; emojiIndex: number }>(
     LS_PROFILE_KEY,
     { name: '', emojiIndex: 0 }
@@ -21,6 +32,23 @@ export default function App() {
   const [showSignInPrompt, setShowSignInPrompt] = useState(false);
   const [search, setSearch] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
+
+  // Migrate local entries to Firestore when user signs in
+  const [hasMigrated, setHasMigrated] = useState(false);
+  useEffect(() => {
+    if (user && !hasMigrated && localEntries.length > 0 && !firestore.loading) {
+      // Move any localStorage entries to Firestore
+      Promise.all(localEntries.map((entry) => firestore.addEntry(entry)))
+        .then(() => {
+          setLocalEntries([]); // Clear local storage after migration
+          setHasMigrated(true);
+        })
+        .catch((err) => console.error('Migration failed:', err));
+    }
+    if (user && !hasMigrated && localEntries.length === 0) {
+      setHasMigrated(true);
+    }
+  }, [user, hasMigrated, localEntries, firestore, setLocalEntries]);
 
   const surferEmoji = SURFER_EMOJIS[profile.emojiIndex]?.emoji ?? SURFER_EMOJIS[0].emoji;
   const [emojiAnim, setEmojiAnim] = useState<'none' | 'slide-left' | 'slide-right'>('none');
@@ -107,41 +135,57 @@ export default function App() {
 
   const addEntry = useCallback(
     (entry: Entry) => {
-      setEntries((prev) => [entry, ...prev]);
+      if (user) {
+        firestore.addEntry(entry).catch((err) => console.error('Add failed:', err));
+      } else {
+        setLocalEntries((prev) => [entry, ...prev]);
+      }
     },
-    [setEntries]
+    [user, firestore, setLocalEntries]
   );
 
   const deleteEntry = useCallback(
     (id: string) => {
-      setEntries((prev) => prev.filter((e) => e.id !== id));
+      if (user) {
+        firestore.deleteEntry(id).catch((err) => console.error('Delete failed:', err));
+      } else {
+        setLocalEntries((prev) => prev.filter((e) => e.id !== id));
+      }
       setToast('Entry deleted');
     },
-    [setEntries]
+    [user, firestore, setLocalEntries]
   );
 
   const updateEntry = useCallback(
     (updated: Entry) => {
-      setEntries((prev) =>
-        prev.map((e) => (e.id === updated.id ? updated : e))
-      );
+      if (user) {
+        firestore.updateEntry(updated).catch((err) => console.error('Update failed:', err));
+      } else {
+        setLocalEntries((prev) =>
+          prev.map((e) => (e.id === updated.id ? updated : e))
+        );
+      }
       setToast('Entry updated ✓');
     },
-    [setEntries]
+    [user, firestore, setLocalEntries]
   );
 
   const clearAll = useCallback(() => {
-    setEntries([]);
+    if (user) {
+      firestore.clearAll().catch((err) => console.error('Clear failed:', err));
+    } else {
+      setLocalEntries([]);
+    }
     setToast('All entries cleared');
     setSearchOpen(false);
     setSearch('');
-  }, [setEntries]);
+  }, [user, firestore, setLocalEntries]);
 
   const showToast = useCallback((message: string) => {
     setToast(message);
   }, []);
 
-  if (loading) {
+  if (loading || firestoreLoading) {
     return (
       <div className="login-screen">
         <div className="login-card">
