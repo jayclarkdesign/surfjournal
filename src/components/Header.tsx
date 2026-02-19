@@ -56,8 +56,12 @@ export default function Header({
   const handleSignIn = async () => {
     try {
       await signInWithGoogle();
-    } catch {
-      // User closed popup or error — silently ignore in header
+    } catch (err) {
+      // Only ignore popup-closed-by-user; surface real errors
+      const msg = err instanceof Error ? err.message : '';
+      if (!msg.includes('popup-closed-by-user')) {
+        console.error('Sign-in failed:', err);
+      }
     }
   };
 
