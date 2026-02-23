@@ -979,6 +979,12 @@ body {
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
 }
 
+@media (max-width: 768px) {
+  .welcome-logo {
+    width: min(420px, 75vw);
+  }
+}
+
 .welcome-choose-text {
   font-family: 'Jersey 10', sans-serif;
   font-size: clamp(20px, 4.5vw, 32px);

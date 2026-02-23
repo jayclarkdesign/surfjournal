@@ -52,6 +52,14 @@ export default function App() {
   const [emojiAnim, setEmojiAnim] = useState<'none' | 'slide-left' | 'slide-right'>('none');
   const [emojiKey, setEmojiKey] = useState(0);
 
+  // Preload all surfer images on mount to prevent loading delays
+  useEffect(() => {
+    SURFER_EMOJIS.forEach((surfer) => {
+      const img = new Image();
+      img.src = surfer.image;
+    });
+  }, []);
+
   const triggerEmojiChange = useCallback(
     (direction: 'left' | 'right') => {
       setEmojiAnim(direction === 'left' ? 'slide-left' : 'slide-right');
