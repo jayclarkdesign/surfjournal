@@ -105,6 +105,11 @@ export default function EntryCard({ entry, onDelete, onUpdate }: EntryCardProps)
   if (editing) {
     return (
       <form className="entry-card" onSubmit={handleSave} noValidate>
+        <div className="form-group">
+          <span className="form-label">Rating</span>
+          <StarRating value={rating} onChange={setRating} />
+        </div>
+
         <div className="form-row">
           <div className="form-group">
             <label className="form-label" htmlFor={`edit-country-${entry.id}`}>Country</label>
@@ -231,17 +236,6 @@ export default function EntryCard({ entry, onDelete, onUpdate }: EntryCardProps)
         </div>
 
         <div className="form-group">
-          <label className="form-label" htmlFor={`edit-cond-${entry.id}`}>Conditions</label>
-          <input
-            id={`edit-cond-${entry.id}`}
-            type="text"
-            className="form-input"
-            value={conditions}
-            onChange={(e) => setConditions(e.target.value)}
-          />
-        </div>
-
-        <div className="form-group">
           <label className="form-label" htmlFor={`edit-notes-${entry.id}`}>Journal</label>
           <textarea
             id={`edit-notes-${entry.id}`}
@@ -250,11 +244,6 @@ export default function EntryCard({ entry, onDelete, onUpdate }: EntryCardProps)
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
           />
-        </div>
-
-        <div className="form-group">
-          <span className="form-label">Rating</span>
-          <StarRating value={rating} onChange={setRating} />
         </div>
 
         <div className="form-actions">
@@ -269,19 +258,32 @@ export default function EntryCard({ entry, onDelete, onUpdate }: EntryCardProps)
 
   const boardInfo = entry.boardType || entry.boardLength;
 
+  const coords = getCoordsForSpot(entry.spot);
+  const hasText = entry.conditions || entry.notes;
+
   return (
     <div className="entry-card">
-      <div className="entry-card-header">
-        <div>
+      <div className="entry-card-columns">
+        {/* Left column: all text content */}
+        <div className="entry-card-left">
           <div className="entry-spot">
             {entry.spot}
-            {(() => {
-              const c = getCountryForSpot(entry.spot);
-              return c ? <span className="entry-country">{c}</span> : null;
-            })()}
+            {entry.rating != null && entry.rating > 0 && (
+              <div className="entry-spot-rating">
+                <StarRating value={entry.rating} onChange={() => {}} readOnly />
+              </div>
+            )}
+            <span className="entry-country">
+              {(() => {
+                const c = getCountryForSpot(entry.spot);
+                const parts: string[] = [];
+                if (c) parts.push(c);
+                parts.push(formatDate(entry.datetime));
+                return parts.join(' • ');
+              })()}
+            </span>
           </div>
           <div className="entry-meta">
-            <span>{formatDate(entry.datetime)}</span>
             <span className="tide-pill">{entry.tide} tide</span>
             {boardInfo && (
               <span className="board-pill">
@@ -289,63 +291,63 @@ export default function EntryCard({ entry, onDelete, onUpdate }: EntryCardProps)
                 {entry.boardType}{entry.boardLength ? ` · ${entry.boardLength}` : ''}
               </span>
             )}
-            {entry.rating != null && entry.rating > 0 && (
-              <StarRating value={entry.rating} onChange={() => {}} readOnly />
-            )}
           </div>
+          {hasText && (
+            <div className="entry-body">
+              {entry.conditions && (
+                <div className="entry-conditions">{entry.conditions}</div>
+              )}
+              {entry.notes && <div className="entry-notes">{entry.notes}</div>}
+            </div>
+          )}
         </div>
-        <div className="entry-card-actions">
-          <button
-            className="btn-icon"
-            onClick={() => setEditing(true)}
-            aria-label={`Edit ${entry.spot} session`}
-            title="Edit"
-          >
-            ✏️
-          </button>
-          <button
-            className="btn-icon"
-            onClick={() => setConfirmDelete(true)}
-            aria-label={`Delete ${entry.spot} session`}
-            title="Delete"
-          >
-            🗑️
-          </button>
+
+        {/* Right column: actions + map */}
+        <div className="entry-card-right">
+          <div className="entry-card-actions">
+            <button
+              className="btn-retro-edit"
+              onClick={() => setEditing(true)}
+              aria-label={`Edit ${entry.spot} session`}
+            >
+              EDIT
+            </button>
+            <button
+              className="btn-pixel-icon"
+              onClick={() => setConfirmDelete(true)}
+              aria-label={`Delete ${entry.spot} session`}
+              title="Delete"
+            >
+              <svg viewBox="0 0 20 20" width="28" height="28" style={{ shapeRendering: 'crispEdges' as const }}>
+                {/* Square bg */}
+                <rect x="1" y="1" width="18" height="18" fill="#E82956" stroke="#7A1530" strokeWidth="1.5" />
+                {/* Highlight top edge */}
+                <rect x="2" y="2" width="16" height="2" fill="rgba(255,255,255,0.2)" />
+                <rect x="2" y="2" width="2" height="16" fill="rgba(255,255,255,0.12)" />
+                {/* X shape */}
+                <line x1="6" y1="6" x2="14" y2="14" stroke="white" strokeWidth="2.5" strokeLinecap="square" />
+                <line x1="14" y1="6" x2="6" y2="14" stroke="white" strokeWidth="2.5" strokeLinecap="square" />
+              </svg>
+            </button>
+          </div>
+          {coords && (
+            <a
+              className="entry-map"
+              href={`https://www.openstreetmap.org/?mlat=${coords[0]}&mlon=${coords[1]}#map=14/${coords[0]}/${coords[1]}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Open in OpenStreetMap"
+            >
+              <iframe
+                src={`https://www.openstreetmap.org/export/embed.html?bbox=${coords[1] - 0.025},${coords[0] - 0.015},${coords[1] + 0.025},${coords[0] + 0.015}&layer=mapnik&marker=${coords[0]},${coords[1]}`}
+                loading="lazy"
+                tabIndex={-1}
+                aria-hidden="true"
+              />
+            </a>
+          )}
         </div>
       </div>
-
-      {(() => {
-        const coords = getCoordsForSpot(entry.spot);
-        const hasText = entry.conditions || entry.notes;
-        return (
-          <div className={`entry-body${coords ? ' entry-body-with-map' : ''}`}>
-            {(hasText) && (
-              <div className="entry-body-text">
-                {entry.conditions && (
-                  <div className="entry-conditions">{entry.conditions}</div>
-                )}
-                {entry.notes && <div className="entry-notes">{entry.notes}</div>}
-              </div>
-            )}
-            {coords && (
-              <a
-                className="entry-map"
-                href={`https://www.openstreetmap.org/?mlat=${coords[0]}&mlon=${coords[1]}#map=14/${coords[0]}/${coords[1]}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Open in OpenStreetMap"
-              >
-                <iframe
-                  src={`https://www.openstreetmap.org/export/embed.html?bbox=${coords[1] - 0.025},${coords[0] - 0.015},${coords[1] + 0.025},${coords[0] + 0.015}&layer=mapnik&marker=${coords[0]},${coords[1]}`}
-                  loading="lazy"
-                  tabIndex={-1}
-                  aria-hidden="true"
-                />
-              </a>
-            )}
-          </div>
-        );
-      })()}
 
       {confirmDelete && (
         <ConfirmDialog

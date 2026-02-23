@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { signInWithGoogle } from '../firebase';
+import { SURFER_EMOJIS } from '../constants';
 
 interface SignInPromptProps {
   onClose: () => void;
@@ -8,6 +9,14 @@ interface SignInPromptProps {
 export default function SignInPrompt({ onClose }: SignInPromptProps) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [surferIndex, setSurferIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSurferIndex((prev) => (prev + 1) % SURFER_EMOJIS.length);
+    }, 800);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleGoogleSignIn = async () => {
     setError(null);
@@ -39,7 +48,13 @@ export default function SignInPrompt({ onClose }: SignInPromptProps) {
       }}
     >
       <div className="signin-prompt">
-        <div className="signin-prompt-icon">🏄</div>
+        <div className="signin-prompt-icon">
+          <img
+            src={SURFER_EMOJIS[surferIndex].image}
+            alt={SURFER_EMOJIS[surferIndex].label}
+            className="signin-surfer-img"
+          />
+        </div>
         <h2 className="signin-prompt-title">Sign in to keep journaling</h2>
         <p className="signin-prompt-text">
           Create a free account to save unlimited surf sessions.

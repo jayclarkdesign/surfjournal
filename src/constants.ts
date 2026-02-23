@@ -1188,12 +1188,12 @@ export const LS_KEY = 'surfJournalEntries_v1';
 export const LS_PROFILE_KEY = 'surfJournalProfile_v1';
 
 export const SURFER_EMOJIS = [
-  { emoji: '🏄‍♂️', label: 'Yellow man' },
-  { emoji: '🏄‍♀️', label: 'Yellow woman' },
-  { emoji: '🏄🏻‍♂️', label: 'White man' },
-  { emoji: '🏄🏻‍♀️', label: 'White woman' },
-  { emoji: '🏄🏽‍♂️', label: 'Brown man' },
-  { emoji: '🏄🏽‍♀️', label: 'Brown woman' },
-  { emoji: '🏄🏿‍♂️', label: 'Black man' },
-  { emoji: '🏄🏿‍♀️', label: 'Black woman' },
+  { image: '/surfers/surfer-1.png', label: 'Blue shirt surfer' },
+  { image: '/surfers/surfer-2.png', label: 'Pink cap surfer' },
+  { image: '/surfers/surfer-3.png', label: 'Colorful outfit surfer' },
+  { image: '/surfers/surfer-4.png', label: 'Sunglasses surfer' },
+  { image: '/surfers/surfer-5.png', label: 'Hawaiian shirt surfer' },
+  { image: '/surfers/surfer-6.png', label: 'Board overhead surfer' },
+  { image: '/surfers/surfer-7.png', label: 'Yellow board surfer' },
+  { image: '/surfers/surfer-8.png', label: 'Pink outfit surfer' },
 ] as const;

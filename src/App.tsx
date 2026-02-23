@@ -30,8 +30,6 @@ export default function App() {
   const [toast, setToast] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [showSignInPrompt, setShowSignInPrompt] = useState(false);
-  const [search, setSearch] = useState('');
-  const [searchOpen, setSearchOpen] = useState(false);
 
   // Migrate local entries to Firestore when user signs in
   const [hasMigrated, setHasMigrated] = useState(false);
@@ -50,7 +48,7 @@ export default function App() {
     }
   }, [user, hasMigrated, localEntries, firestore, setLocalEntries]);
 
-  const surferEmoji = SURFER_EMOJIS[profile.emojiIndex]?.emoji ?? SURFER_EMOJIS[0].emoji;
+  const surferImage = SURFER_EMOJIS[profile.emojiIndex]?.image ?? SURFER_EMOJIS[0].image;
   const [emojiAnim, setEmojiAnim] = useState<'none' | 'slide-left' | 'slide-right'>('none');
   const [emojiKey, setEmojiKey] = useState(0);
 
@@ -85,18 +83,6 @@ export default function App() {
     [entries]
   );
 
-  // Filter by search
-  const filtered = useMemo(() => {
-    if (!search.trim()) return sorted;
-    const q = search.toLowerCase();
-    return sorted.filter(
-      (e) =>
-        e.spot.toLowerCase().includes(q) ||
-        e.conditions.toLowerCase().includes(q) ||
-        e.notes.toLowerCase().includes(q)
-    );
-  }, [sorted, search]);
-
   // Lock body scroll when a modal is open
   useEffect(() => {
     if (showForm || showSignInPrompt) {
@@ -116,13 +102,6 @@ export default function App() {
       setShowForm(true); // open the form they originally wanted
     }
   }, [user, showSignInPrompt]);
-
-  const handleSearchToggle = useCallback(() => {
-    setSearchOpen((prev) => {
-      if (prev) setSearch(''); // clear search when closing
-      return !prev;
-    });
-  }, []);
 
   // Gate new entries behind sign-in after the first free one
   const handleNewEntry = useCallback(() => {
@@ -170,16 +149,6 @@ export default function App() {
     [user, firestore, setLocalEntries]
   );
 
-  const clearAll = useCallback(() => {
-    if (user) {
-      firestore.clearAll().catch((err) => console.error('Clear failed:', err));
-    } else {
-      setLocalEntries([]);
-    }
-    setToast('All entries cleared');
-    setSearchOpen(false);
-    setSearch('');
-  }, [user, firestore, setLocalEntries]);
 
   const showToast = useCallback((message: string) => {
     setToast(message);
@@ -187,10 +156,11 @@ export default function App() {
 
   if (loading || firestoreLoading) {
     return (
-      <div className="login-screen">
-        <div className="login-card">
-          <div className="login-icon">🏄</div>
-          <p className="login-subtitle">Loading…</p>
+      <div className="welcome-screen">
+        <div className="welcome-screen-bg" />
+        <div className="welcome-content">
+          <img src="/logo.png" alt="Surf Journal" className="welcome-logo" />
+          <p className="welcome-choose-text">Loading…</p>
         </div>
       </div>
     );
@@ -198,42 +168,37 @@ export default function App() {
 
   return (
     <>
-      <Header
-        entryCount={entries.length}
-        search={search}
-        onSearchChange={setSearch}
-        searchOpen={searchOpen}
-        onSearchToggle={handleSearchToggle}
-        surferEmoji={surferEmoji}
-        userName={profile.name || user?.displayName || ''}
-        userPhoto={user?.photoURL ?? undefined}
-        isSignedIn={!!user}
-      />
-      <main className="app-container">
-        {entries.length === 0 ? (
-          <div className="welcome-card">
+      {entries.length === 0 ? (
+        <div className="welcome-screen">
+          <div className="welcome-screen-bg" />
+          <div className="welcome-content">
+            <img src="/logo.png" alt="Surf Journal" className="welcome-logo" />
+            <h2 className="welcome-choose-text">CHOOSE YOUR SURFER</h2>
             <div className="emoji-picker">
               <button
                 className="emoji-arrow"
                 onClick={handlePrevEmoji}
                 aria-label="Previous surfer style"
               >
-                ‹
+                <img src="/arrow.png" alt="Previous" className="arrow-img arrow-left" />
               </button>
               <span
                 key={emojiKey}
                 className={`welcome-icon ${emojiAnim !== 'none' ? emojiAnim : ''}`}
-                aria-label={SURFER_EMOJIS[profile.emojiIndex]?.label}
                 onAnimationEnd={() => setEmojiAnim('none')}
               >
-                {surferEmoji}
+                <img
+                  src={surferImage}
+                  alt={SURFER_EMOJIS[profile.emojiIndex]?.label ?? 'Surfer'}
+                  className="surfer-img"
+                />
               </span>
               <button
                 className="emoji-arrow"
                 onClick={handleNextEmoji}
                 aria-label="Next surfer style"
               >
-                ›
+                <img src="/arrow.png" alt="Next" className="arrow-img arrow-right" />
               </button>
             </div>
             <input
@@ -244,36 +209,38 @@ export default function App() {
               onChange={(e) => handleNameChange(e.target.value)}
               aria-label="Your name"
             />
-            <h2 className="welcome-title">Welcome to Surf Journal</h2>
-            <p className="welcome-text">
-              Track your sessions, conditions, and progress — all in one place.
-            </p>
             <button
-              className="btn btn-primary add-entry-btn"
+              className="btn-retro-cta"
               onClick={() => setShowForm(true)}
             >
-              Log your first session
+              Log first wave
             </button>
           </div>
-        ) : (
-          <>
+        </div>
+      ) : (
+        <div className="retro-app">
+          <div className="retro-app-bg" />
+          <Header
+            surferImage={surferImage}
+            userName={profile.name || user?.displayName || ''}
+            userPhoto={user?.photoURL ?? undefined}
+            isSignedIn={!!user}
+          />
+          <main className="app-container">
             <button
               className="btn btn-primary add-entry-btn"
               onClick={handleNewEntry}
             >
-              New entry
+              + New entry
             </button>
             <EntryList
-              entries={filtered}
-              totalCount={entries.length}
-              search={search}
+              entries={sorted}
               onDelete={deleteEntry}
               onUpdate={updateEntry}
-              onClearAll={clearAll}
             />
-          </>
-        )}
-      </main>
+          </main>
+        </div>
+      )}
 
       {/* Form modal */}
       {showForm && (

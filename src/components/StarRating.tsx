@@ -6,6 +6,25 @@ interface StarRatingProps {
   readOnly?: boolean;
 }
 
+/* 8-bit pixel star using uploaded asset */
+function PixelStar({ filled, size = 20 }: { filled: boolean; size?: number }) {
+  return (
+    <img
+      src="/star.png"
+      alt=""
+      aria-hidden="true"
+      width={size}
+      height={size}
+      style={{
+        imageRendering: 'pixelated',
+        display: 'block',
+        opacity: filled ? 1 : 0.5,
+        filter: filled ? 'none' : 'grayscale(60%)',
+      }}
+    />
+  );
+}
+
 export default function StarRating({ value, onChange, readOnly = false }: StarRatingProps) {
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent, star: number) => {
@@ -25,8 +44,8 @@ export default function StarRating({ value, onChange, readOnly = false }: StarRa
     return (
       <span className="star-display" aria-label={`${value} out of 5 stars`}>
         {[1, 2, 3, 4, 5].map((star) => (
-          <span key={star} className={star <= value ? '' : 'empty'} aria-hidden="true">
-            {star <= value ? '★' : '☆'}
+          <span key={star} aria-hidden="true">
+            <PixelStar filled={star <= value} />
           </span>
         ))}
       </span>
@@ -47,7 +66,7 @@ export default function StarRating({ value, onChange, readOnly = false }: StarRa
           onClick={() => onChange(star === value ? 0 : star)}
           onKeyDown={(e) => handleKeyDown(e, star)}
         >
-          {star <= value ? '★' : '☆'}
+          <PixelStar filled={star <= value} />
         </button>
       ))}
     </div>

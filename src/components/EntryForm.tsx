@@ -45,7 +45,6 @@ export default function EntryForm({ onAdd, onToast, onClose, lastEntry }: EntryF
   const [tide, setTide] = useState<Tide>('Mid');
   const [boardType, setBoardType] = useState<BoardType | undefined>(defaults.boardType);
   const [boardLength, setBoardLength] = useState(defaults.boardLength);
-  const [conditions, setConditions] = useState('');
   const [notes, setNotes] = useState('');
   const [rating, setRating] = useState(0);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -77,14 +76,13 @@ export default function EntryForm({ onAdd, onToast, onClose, lastEntry }: EntryF
         tide,
         boardType: boardType ?? undefined,
         boardLength: boardLength.trim() || undefined,
-        conditions: conditions.trim(),
+        conditions: '',
         notes: notes.trim(),
         rating: rating > 0 ? rating : undefined,
         createdAt: Date.now(),
       };
 
       onAdd(entry);
-      setConditions('');
       setNotes('');
       setRating(0);
       setDate(toDateStr(new Date()));
@@ -93,7 +91,7 @@ export default function EntryForm({ onAdd, onToast, onClose, lastEntry }: EntryF
       onToast('Session saved ✓');
       onClose();
     },
-    [spot, customSpot, date, time, tide, boardType, boardLength, conditions, notes, rating, onAdd, onToast, onClose, validate]
+    [spot, customSpot, date, time, tide, boardType, boardLength, notes, rating, onAdd, onToast, onClose, validate]
   );
 
   const handleReset = useCallback(() => {
@@ -105,7 +103,6 @@ export default function EntryForm({ onAdd, onToast, onClose, lastEntry }: EntryF
     setTide('Mid');
     setBoardType(undefined);
     setBoardLength('');
-    setConditions('');
     setNotes('');
     setRating(0);
     setErrors({});
@@ -123,6 +120,12 @@ export default function EntryForm({ onAdd, onToast, onClose, lastEntry }: EntryF
         >
           ✕
         </button>
+      </div>
+
+      {/* Rating */}
+      <div className="form-group">
+        <span className="form-label">Rating</span>
+        <StarRating value={rating} onChange={setRating} />
       </div>
 
       {/* Country + Spot (side by side) */}
@@ -299,21 +302,6 @@ export default function EntryForm({ onAdd, onToast, onClose, lastEntry }: EntryF
         </div>
       </div>
 
-      {/* Conditions */}
-      <div className="form-group">
-        <label className="form-label" htmlFor="conditions">
-          Conditions
-        </label>
-        <input
-          id="conditions"
-          type="text"
-          className="form-input"
-          placeholder="2–4ft, light offshore, glassy"
-          value={conditions}
-          onChange={(e) => setConditions(e.target.value)}
-        />
-      </div>
-
       {/* Journal */}
       <div className="form-group">
         <label className="form-label" htmlFor="notes">
@@ -327,12 +315,6 @@ export default function EntryForm({ onAdd, onToast, onClose, lastEntry }: EntryF
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
         />
-      </div>
-
-      {/* Rating */}
-      <div className="form-group">
-        <span className="form-label">Rating</span>
-        <StarRating value={rating} onChange={setRating} />
       </div>
 
       {/* Actions */}
