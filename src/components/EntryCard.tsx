@@ -57,7 +57,6 @@ export default function EntryCard({ entry, onDelete, onUpdate }: EntryCardProps)
   const [tide, setTide] = useState<Tide>(entry.tide);
   const [boardType, setBoardType] = useState<BoardType | undefined>(entry.boardType);
   const [boardLength, setBoardLength] = useState(entry.boardLength ?? '');
-  const [conditions, setConditions] = useState(entry.conditions);
   const [notes, setNotes] = useState(entry.notes);
   const [rating, setRating] = useState(entry.rating ?? 0);
 
@@ -77,13 +76,13 @@ export default function EntryCard({ entry, onDelete, onUpdate }: EntryCardProps)
         tide,
         boardType: boardType ?? undefined,
         boardLength: boardLength.trim() || undefined,
-        conditions: conditions.trim(),
+        conditions: '',
         notes: notes.trim(),
         rating: rating > 0 ? rating : undefined,
       });
       setEditing(false);
     },
-    [entry, spot, customSpot, date, time, tide, boardType, boardLength, conditions, notes, rating, onUpdate]
+    [entry, spot, customSpot, date, time, tide, boardType, boardLength, notes, rating, onUpdate]
   );
 
   const handleCancelEdit = useCallback(() => {
@@ -96,7 +95,6 @@ export default function EntryCard({ entry, onDelete, onUpdate }: EntryCardProps)
     setTide(entry.tide);
     setBoardType(entry.boardType);
     setBoardLength(entry.boardLength ?? '');
-    setConditions(entry.conditions);
     setNotes(entry.notes);
     setRating(entry.rating ?? 0);
     setEditing(false);
@@ -259,7 +257,7 @@ export default function EntryCard({ entry, onDelete, onUpdate }: EntryCardProps)
   const boardInfo = entry.boardType || entry.boardLength;
 
   const coords = getCoordsForSpot(entry.spot);
-  const hasText = entry.conditions || entry.notes;
+  const hasText = entry.notes;
 
   return (
     <div className="entry-card">
@@ -294,9 +292,6 @@ export default function EntryCard({ entry, onDelete, onUpdate }: EntryCardProps)
           </div>
           {hasText && (
             <div className="entry-body">
-              {entry.conditions && (
-                <div className="entry-conditions">{entry.conditions}</div>
-              )}
               {entry.notes && <div className="entry-notes">{entry.notes}</div>}
             </div>
           )}
