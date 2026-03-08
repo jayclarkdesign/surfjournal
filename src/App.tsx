@@ -120,7 +120,7 @@ export default function App() {
       profileSyncedRef.current = false;
       return;
     }
-    if (firestoreProfile.loading || profileSyncedRef.current) return;
+    if (!firestoreProfile.checkedOnce || profileSyncedRef.current) return;
 
     if (firestoreProfile.profile) {
       setProfileLocal(firestoreProfile.profile);
@@ -128,7 +128,7 @@ export default function App() {
       firestoreProfile.saveProfile(profile).catch((err) => console.error('Profile push failed:', err));
     }
     profileSyncedRef.current = true;
-  }, [user, firestoreProfile.loading, firestoreProfile.profile, firestoreProfile, profile, setProfileLocal]);
+  }, [user, firestoreProfile.checkedOnce, firestoreProfile.profile, firestoreProfile, profile, setProfileLocal]);
 
   // Wrap setProfile to also persist to Firestore
   const setProfile = useCallback(
