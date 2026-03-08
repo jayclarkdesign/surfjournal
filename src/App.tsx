@@ -87,8 +87,24 @@ export default function App() {
   const firestore = useFirestoreEntries(user?.uid ?? null);
 
   // Use Firestore entries when signed in, localStorage when not
-  const entries = user ? firestore.entries : localEntries;
+  const baseEntries = user ? firestore.entries : localEntries;
   const firestoreLoading = user ? firestore.loading : false;
+  const [pendingEntry, setPendingEntry] = useState<Entry | null>(null);
+
+  // Clear pending entry once Firestore listener has the real data
+  useEffect(() => {
+    if (pendingEntry && baseEntries.some((e) => e.id === pendingEntry.id)) {
+      setPendingEntry(null);
+    }
+  }, [baseEntries, pendingEntry]);
+
+  // Include pending entry until Firestore listener catches up
+  const entries = useMemo(() => {
+    if (pendingEntry && !baseEntries.some((e) => e.id === pendingEntry.id)) {
+      return [pendingEntry, ...baseEntries];
+    }
+    return baseEntries;
+  }, [baseEntries, pendingEntry]);
 
   const [profile, setProfile] = useLocalStorage<{ name: string; emojiIndex: number }>(
     LS_PROFILE_KEY,
@@ -101,6 +117,7 @@ export default function App() {
   const [mapFocusSpot, setMapFocusSpot] = useState<string | null>(null);
   const [muted, setMuted] = useState(false);
   const [started, setStarted] = useState(false);
+  const [onboardingDone, setOnboardingDone] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Migrate local entries to Firestore when user signs in
@@ -206,16 +223,23 @@ export default function App() {
   }, [showForm, showSignInPrompt, showMap]);
 
   // Auto-close sign-in prompt when user signs in
+  const signInSourceRef = useRef<'splash' | 'gate' | null>(null);
   useEffect(() => {
     if (user && showSignInPrompt) {
       setShowSignInPrompt(false);
-      setShowForm(true); // open the form they originally wanted
+      if (signInSourceRef.current === 'splash') {
+        setStarted(true);
+      } else {
+        setShowForm(true);
+      }
+      signInSourceRef.current = null;
     }
   }, [user, showSignInPrompt]);
 
   // Gate new entries behind sign-in after the first free one
   const handleNewEntry = useCallback(() => {
     if (entries.length >= 1 && !user) {
+      signInSourceRef.current = 'gate';
       setShowSignInPrompt(true);
     } else {
       setShowForm(true);
@@ -226,11 +250,17 @@ export default function App() {
     (entry: Entry) => {
       if (user) {
         firestore.addEntry(entry).catch((err) => console.error('Add failed:', err));
+        if (entries.length === 0) {
+          setPendingEntry(entry);
+        }
       } else {
         setLocalEntries((prev) => [entry, ...prev]);
       }
+      if (entries.length === 0) {
+        setOnboardingDone(true);
+      }
     },
-    [user, firestore, setLocalEntries]
+    [user, firestore, setLocalEntries, entries.length]
   );
 
   const deleteEntry = useCallback(
@@ -276,9 +306,11 @@ export default function App() {
     );
   }
 
+  const needsOnboarding = !onboardingDone && (entries.length === 0 || !profile.name);
+
   return (
     <>
-      {entries.length === 0 ? (
+      {needsOnboarding ? (
         !started ? (
           <div className="welcome-screen">
             <div className="welcome-screen-bg" />
@@ -297,7 +329,7 @@ export default function App() {
               <button
                 type="button"
                 className="btn-retro-cta splash-signin-btn splash-entrance splash-delay-3"
-                onClick={() => setShowSignInPrompt(true)}
+                onClick={() => { signInSourceRef.current = 'splash'; setShowSignInPrompt(true); }}
               >
                 Sign in
               </button>
@@ -348,9 +380,16 @@ export default function App() {
                 />
                 <button
                   className="btn-retro-cta"
-                  onClick={() => setShowForm(true)}
+                  onClick={() => {
+                    if (entries.length > 0) {
+                      // Returning user on new device -- profile is now set, skip to journal
+                    } else {
+                      setShowForm(true);
+                    }
+                  }}
+                  disabled={!profile.name.trim()}
                 >
-                  Log first wave
+                  {entries.length > 0 ? "Let's go" : 'Log first wave'}
                 </button>
               </div>
             </div>
@@ -366,7 +405,7 @@ export default function App() {
             isSignedIn={!!user}
             muted={muted}
             onToggleSound={handleToggleSound}
-            onSignIn={() => setShowSignInPrompt(true)}
+            onSignIn={() => { signInSourceRef.current = 'gate'; setShowSignInPrompt(true); }}
           />
           <main className="app-container">
             <div className="action-buttons-row">
