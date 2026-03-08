@@ -1,4 +1,5 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { useFirestoreEntries } from './hooks/useFirestoreEntries';
 import { useAuth } from './hooks/useAuth';
@@ -9,6 +10,71 @@ import EntryForm from './components/EntryForm';
 import EntryList from './components/EntryList';
 import Toast from './components/Toast';
 import SignInPrompt from './components/SignInPrompt';
+
+const soundBtnStyle: React.CSSProperties = {
+  position: 'fixed',
+  top: 16,
+  right: 16,
+  zIndex: 99999,
+  width: 44,
+  height: 44,
+  border: 'none',
+  borderRadius: 0,
+  background: '#f5c800',
+  color: '#1a1a2e',
+  cursor: 'pointer',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  boxShadow: '0 -3px 0 0 #333, 0 3px 0 0 #333, -3px 0 0 0 #333, 3px 0 0 0 #333',
+  padding: 0,
+};
+
+function SoundToggle({ muted, onToggle }: { muted: boolean; onToggle: () => void }) {
+  return createPortal(
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-label={muted ? 'Unmute backing track' : 'Mute backing track'}
+      style={soundBtnStyle}
+    >
+      {muted ? (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style={{ opacity: 0.7 }}>
+          <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+        </svg>
+      ) : (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+        </svg>
+      )}
+    </button>,
+    document.body
+  );
+}
+
+function SplashSurferCycle() {
+  const [index, setIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setIndex((i) => (i + 1) % SURFER_EMOJIS.length);
+        setFade(true);
+      }, 300);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <img
+      src={SURFER_EMOJIS[index].image}
+      alt={SURFER_EMOJIS[index].label}
+      className={`splash-surfer-img ${fade ? 'splash-surfer-visible' : 'splash-surfer-hidden'}`}
+    />
+  );
+}
 
 export default function App() {
   const { user, loading } = useAuth();
@@ -30,6 +96,9 @@ export default function App() {
   const [toast, setToast] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [showSignInPrompt, setShowSignInPrompt] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [started, setStarted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Migrate local entries to Firestore when user signs in
   const [hasMigrated, setHasMigrated] = useState(false);
@@ -90,6 +159,36 @@ export default function App() {
     () => [...entries].sort((a, b) => b.createdAt - a.createdAt),
     [entries]
   );
+
+  // Create Audio object once on mount
+  useEffect(() => {
+    const audio = new Audio('/audio/backing-track.mp3');
+    audio.loop = true;
+    audioRef.current = audio;
+    return () => { audio.pause(); audio.src = ''; };
+  }, []);
+
+  // "Get Started" handler: start music and advance to surfer picker
+  const handleGetStarted = useCallback(() => {
+    const audio = audioRef.current;
+    if (audio) audio.play().catch(() => {});
+    setStarted(true);
+  }, []);
+
+  // Mute toggle: play/pause directly in click handler (user gesture)
+  const handleToggleSound = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (muted) {
+      audio.play().catch(() => {});
+      setMuted(false);
+    } else {
+      audio.pause();
+      setMuted(true);
+    }
+  }, [muted]);
+
+  const soundTogglePortal = <SoundToggle muted={muted} onToggle={handleToggleSound} />;
 
   // Lock body scroll when a modal is open
   useEffect(() => {
@@ -177,54 +276,76 @@ export default function App() {
   return (
     <>
       {entries.length === 0 ? (
-        <div className="welcome-screen">
-          <div className="welcome-screen-bg" />
-          <div className="welcome-content">
-            <img src="/logo.png" alt="Surf Journal" className="welcome-logo" />
-            <h2 className="welcome-choose-text">CHOOSE YOUR SURFER</h2>
-            <div className="emoji-picker">
+        !started ? (
+          <div className="welcome-screen">
+            <div className="welcome-screen-bg" />
+            <div className="welcome-content">
+              <img src="/logo.png" alt="Surf Journal" className="welcome-logo splash-entrance splash-delay-0" />
+              <h2 className="splash-tagline splash-entrance splash-delay-1">LOG YOUR WAVES</h2>
+              <div className="splash-surfer splash-entrance splash-delay-2">
+                <SplashSurferCycle />
+              </div>
               <button
-                className="emoji-arrow"
-                onClick={handlePrevEmoji}
-                aria-label="Previous surfer style"
+                className="btn-retro-cta splash-entrance splash-delay-3"
+                onClick={handleGetStarted}
               >
-                <img src="/arrow.png" alt="Previous" className="arrow-img arrow-left" />
-              </button>
-              <span
-                key={emojiKey}
-                className={`welcome-icon ${emojiAnim !== 'none' ? emojiAnim : ''}`}
-                onAnimationEnd={() => setEmojiAnim('none')}
-              >
-                <img
-                  src={surferImage}
-                  alt={SURFER_EMOJIS[profile.emojiIndex]?.label ?? 'Surfer'}
-                  className="surfer-img"
-                />
-              </span>
-              <button
-                className="emoji-arrow"
-                onClick={handleNextEmoji}
-                aria-label="Next surfer style"
-              >
-                <img src="/arrow.png" alt="Next" className="arrow-img arrow-right" />
+                Get started
               </button>
             </div>
-            <input
-              type="text"
-              className="name-input"
-              placeholder="Your name"
-              value={profile.name}
-              onChange={(e) => handleNameChange(e.target.value)}
-              aria-label="Your name"
-            />
-            <button
-              className="btn-retro-cta"
-              onClick={() => setShowForm(true)}
-            >
-              Log first wave
-            </button>
           </div>
-        </div>
+        ) : (
+          <>
+            {soundTogglePortal}
+            <div className="welcome-screen">
+              <div className="welcome-screen-bg" />
+              <div className="welcome-content">
+                <img src="/logo.png" alt="Surf Journal" className="welcome-logo" />
+                <h2 className="welcome-choose-text">CHOOSE YOUR SURFER</h2>
+                <div className="emoji-picker">
+                  <button
+                    className="emoji-arrow"
+                    onClick={handlePrevEmoji}
+                    aria-label="Previous surfer style"
+                  >
+                    <img src="/arrow.png" alt="Previous" className="arrow-img arrow-left" />
+                  </button>
+                  <span
+                    key={emojiKey}
+                    className={`welcome-icon ${emojiAnim !== 'none' ? emojiAnim : ''}`}
+                    onAnimationEnd={() => setEmojiAnim('none')}
+                  >
+                    <img
+                      src={surferImage}
+                      alt={SURFER_EMOJIS[profile.emojiIndex]?.label ?? 'Surfer'}
+                      className="surfer-img"
+                    />
+                  </span>
+                  <button
+                    className="emoji-arrow"
+                    onClick={handleNextEmoji}
+                    aria-label="Next surfer style"
+                  >
+                    <img src="/arrow.png" alt="Next" className="arrow-img arrow-right" />
+                  </button>
+                </div>
+                <input
+                  type="text"
+                  className="name-input"
+                  placeholder="Your name"
+                  value={profile.name}
+                  onChange={(e) => handleNameChange(e.target.value)}
+                  aria-label="Your name"
+                />
+                <button
+                  className="btn-retro-cta"
+                  onClick={() => setShowForm(true)}
+                >
+                  Log first wave
+                </button>
+              </div>
+            </div>
+          </>
+        )
       ) : (
         <div className="retro-app">
           <div className="retro-app-bg" />
@@ -233,6 +354,8 @@ export default function App() {
             userName={profile.name || user?.displayName || ''}
             userPhoto={user?.photoURL ?? undefined}
             isSignedIn={!!user}
+            muted={muted}
+            onToggleSound={handleToggleSound}
           />
           <main className="app-container">
             <button
