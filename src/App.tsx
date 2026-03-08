@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { useFirestoreEntries } from './hooks/useFirestoreEntries';
+import { useFirestoreProfile } from './hooks/useFirestoreProfile';
 import { useAuth } from './hooks/useAuth';
 import { LS_KEY, LS_PROFILE_KEY, SURFER_EMOJIS } from './constants';
 import type { Entry } from './types';
@@ -85,10 +86,11 @@ export default function App() {
 
   // Firestore for signed-in users
   const firestore = useFirestoreEntries(user?.uid ?? null);
+  const firestoreProfile = useFirestoreProfile(user?.uid ?? null);
 
   // Use Firestore entries when signed in, localStorage when not
   const baseEntries = user ? firestore.entries : localEntries;
-  const firestoreLoading = user ? firestore.loading : false;
+  const firestoreLoading = user ? (firestore.loading || firestoreProfile.loading) : false;
   const [pendingEntry, setPendingEntry] = useState<Entry | null>(null);
 
   // Clear pending entry once Firestore listener has the real data
@@ -106,9 +108,35 @@ export default function App() {
     return baseEntries;
   }, [baseEntries, pendingEntry]);
 
-  const [profile, setProfile] = useLocalStorage<{ name: string; emojiIndex: number }>(
+  const [profile, setProfileLocal] = useLocalStorage<{ name: string; emojiIndex: number }>(
     LS_PROFILE_KEY,
     { name: '', emojiIndex: 0 }
+  );
+
+  // Sync profile from Firestore → localStorage when signed in
+  const profileSyncedRef = useRef(false);
+  useEffect(() => {
+    if (user && firestoreProfile.profile && !profileSyncedRef.current) {
+      setProfileLocal(firestoreProfile.profile);
+      profileSyncedRef.current = true;
+    }
+    if (!user) {
+      profileSyncedRef.current = false;
+    }
+  }, [user, firestoreProfile.profile, setProfileLocal]);
+
+  // Wrap setProfile to also persist to Firestore
+  const setProfile = useCallback(
+    (updater: { name: string; emojiIndex: number } | ((prev: { name: string; emojiIndex: number }) => { name: string; emojiIndex: number })) => {
+      setProfileLocal((prev) => {
+        const next = typeof updater === 'function' ? updater(prev) : updater;
+        if (user) {
+          firestoreProfile.saveProfile(next).catch((err) => console.error('Profile save failed:', err));
+        }
+        return next;
+      });
+    },
+    [user, firestoreProfile, setProfileLocal]
   );
   const [toast, setToast] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
