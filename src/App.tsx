@@ -10,6 +10,7 @@ import EntryForm from './components/EntryForm';
 import EntryList from './components/EntryList';
 import Toast from './components/Toast';
 import SignInPrompt from './components/SignInPrompt';
+import MapView from './components/MapView';
 
 const soundBtnStyle: React.CSSProperties = {
   position: 'fixed',
@@ -96,6 +97,8 @@ export default function App() {
   const [toast, setToast] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [showSignInPrompt, setShowSignInPrompt] = useState(false);
+  const [showMap, setShowMap] = useState(false);
+  const [mapFocusSpot, setMapFocusSpot] = useState<string | null>(null);
   const [muted, setMuted] = useState(false);
   const [started, setStarted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -192,7 +195,7 @@ export default function App() {
 
   // Lock body scroll when a modal is open
   useEffect(() => {
-    if (showForm || showSignInPrompt) {
+    if (showForm || showSignInPrompt || showMap) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -200,7 +203,7 @@ export default function App() {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [showForm, showSignInPrompt]);
+  }, [showForm, showSignInPrompt, showMap]);
 
   // Auto-close sign-in prompt when user signs in
   useEffect(() => {
@@ -358,16 +361,28 @@ export default function App() {
             onToggleSound={handleToggleSound}
           />
           <main className="app-container">
-            <button
-              className="btn btn-primary add-entry-btn"
-              onClick={handleNewEntry}
-            >
-              + New entry
-            </button>
+            <div className="action-buttons-row">
+              <button
+                className="btn btn-secondary view-map-btn"
+                onClick={() => setShowMap(true)}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ marginRight: 6 }}>
+                  <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z" />
+                </svg>
+                View map
+              </button>
+              <button
+                className="btn btn-primary add-entry-btn"
+                onClick={handleNewEntry}
+              >
+                + New entry
+              </button>
+            </div>
             <EntryList
               entries={sorted}
               onDelete={deleteEntry}
               onUpdate={updateEntry}
+              onOpenMap={(spot) => { setMapFocusSpot(spot); setShowMap(true); }}
             />
           </main>
         </div>
@@ -398,6 +413,14 @@ export default function App() {
       {/* Sign-in prompt modal */}
       {showSignInPrompt && (
         <SignInPrompt onClose={() => setShowSignInPrompt(false)} />
+      )}
+
+      {showMap && (
+        <MapView
+          entries={entries}
+          onClose={() => { setShowMap(false); setMapFocusSpot(null); }}
+          focusSpot={mapFocusSpot}
+        />
       )}
 
       {toast && <Toast message={toast} onDismiss={() => setToast(null)} />}

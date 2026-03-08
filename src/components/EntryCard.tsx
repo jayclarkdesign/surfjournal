@@ -9,6 +9,7 @@ interface EntryCardProps {
   entry: Entry;
   onDelete: (id: string) => void;
   onUpdate: (entry: Entry) => void;
+  onOpenMap?: () => void;
 }
 
 const OTHER_VALUE = '__other__';
@@ -43,7 +44,7 @@ function getBoardIcon(type: string): string {
   return BOARD_TYPES.find((b) => b.value === type)?.icon ?? '';
 }
 
-export default function EntryCard({ entry, onDelete, onUpdate }: EntryCardProps) {
+export default function EntryCard({ entry, onDelete, onUpdate, onOpenMap }: EntryCardProps) {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [editing, setEditing] = useState(false);
 
@@ -326,12 +327,11 @@ export default function EntryCard({ entry, onDelete, onUpdate }: EntryCardProps)
             </button>
           </div>
           {coords && (
-            <a
+            <button
+              type="button"
               className="entry-map"
-              href={`https://www.openstreetmap.org/?mlat=${coords[0]}&mlon=${coords[1]}#map=14/${coords[0]}/${coords[1]}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Open in OpenStreetMap"
+              onClick={onOpenMap}
+              title="View on map"
             >
               <iframe
                 src={`https://www.openstreetmap.org/export/embed.html?bbox=${coords[1] - 0.025},${coords[0] - 0.015},${coords[1] + 0.025},${coords[0] + 0.015}&layer=mapnik&marker=${coords[0]},${coords[1]}`}
@@ -339,7 +339,7 @@ export default function EntryCard({ entry, onDelete, onUpdate }: EntryCardProps)
                 tabIndex={-1}
                 aria-hidden="true"
               />
-            </a>
+            </button>
           )}
         </div>
       </div>

@@ -1677,6 +1677,160 @@ body {
   background: var(--color-primary);
 }
 
+/* ── Action Buttons Row ──────────────────────────────── */
+.action-buttons-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin: var(--space-sm) auto var(--space-md);
+  padding-top: var(--space-sm);
+  position: sticky;
+  top: 60px;
+  z-index: 10;
+}
+
+.action-buttons-row .add-entry-btn {
+  position: static;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.action-buttons-row .btn::after {
+  display: none;
+}
+
+.view-map-btn {
+  font-size: 20px !important;
+  min-height: var(--input-height);
+  color: var(--color-text);
+  box-shadow:
+    var(--pixel-border-thick),
+    4px 4px 0 0 #333;
+}
+
+.view-map-btn:hover {
+  background: #f0f0f0;
+  transform: translate(0, -2px);
+  box-shadow:
+    var(--pixel-border-thick),
+    4px 6px 0 0 #333,
+    0 6px 0 0 #333;
+}
+
+.view-map-btn:active {
+  background: #e0e0e0;
+  transform: translate(0, 2px);
+  box-shadow: var(--pixel-border-thick);
+}
+
+/* ── Map Overlay ─────────────────────────────────────── */
+.map-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--color-bg);
+  animation: fadeIn 0.2s ease;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+.map-container .leaflet-control-zoom a {
+  width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+  font-size: 18px !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: var(--pixel-border);
+  background: #fff;
+  color: var(--color-text);
+}
+
+.map-container .leaflet-control-zoom {
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin-top: 60px !important;
+}
+
+.map-close-btn {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 510;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-family: var(--font-pixel);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-text);
+  background: var(--color-primary);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  box-shadow: var(--pixel-border);
+  text-transform: uppercase;
+  transition: transform 0.08s ease;
+}
+
+.map-close-btn:hover {
+  background: #ffda33;
+  transform: translate(0, -1px);
+}
+
+.map-close-btn:active {
+  transform: translate(0, 1px);
+}
+
+/* ── Map Bottom Sheet ────────────────────────────────── */
+.map-bottom-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 520;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeIn 0.15s ease;
+}
+
+.map-sheet-content {
+  background: #fff;
+  width: 100%;
+  max-width: 560px;
+  max-height: 50vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--space-sm) var(--space-md);
+  margin: 0 var(--space-md) var(--space-xl);
+  box-shadow: var(--pixel-border);
+  animation: modalSlideUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.map-sheet-spot-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.map-sheet-card {
+  background: #fff;
+  padding: var(--space-md) 0;
+  border-bottom: 3px solid #eee;
+}
+
+.map-sheet-card:last-of-type {
+  border-bottom: none;
+}
+
+
 /* ── Responsive ───────────────────────────────────────── */
 @media (min-width: 640px) {
   .app-container {

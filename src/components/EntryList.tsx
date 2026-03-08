@@ -5,9 +5,10 @@ interface EntryListProps {
   entries: Entry[];
   onDelete: (id: string) => void;
   onUpdate: (entry: Entry) => void;
+  onOpenMap?: (spot: string) => void;
 }
 
-export default function EntryList({ entries, onDelete, onUpdate }: EntryListProps) {
+export default function EntryList({ entries, onDelete, onUpdate, onOpenMap }: EntryListProps) {
   return (
     <section aria-label="Surf journal entries">
       {entries.map((entry) => (
@@ -16,6 +17,7 @@ export default function EntryList({ entries, onDelete, onUpdate }: EntryListProp
           entry={entry}
           onDelete={onDelete}
           onUpdate={onUpdate}
+          onOpenMap={onOpenMap ? () => onOpenMap(entry.spot) : undefined}
         />
       ))}
     </section>
