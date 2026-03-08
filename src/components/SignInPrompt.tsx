@@ -1,15 +1,38 @@
-import { useState, useEffect } from 'react';
-import { signInWithGoogle } from '../firebase';
+import { useState, useEffect, type FormEvent } from 'react';
+import { signInWithGoogle, signInWithEmail, signUpWithEmail, resetPassword } from '../firebase';
 import { SURFER_EMOJIS } from '../constants';
 
 interface SignInPromptProps {
   onClose: () => void;
 }
 
+function friendlyError(code: string): string {
+  switch (code) {
+    case 'auth/email-already-in-use':
+      return 'An account with this email already exists. Try signing in.';
+    case 'auth/invalid-email':
+      return 'Please enter a valid email address.';
+    case 'auth/weak-password':
+      return 'Password must be at least 6 characters.';
+    case 'auth/user-not-found':
+    case 'auth/wrong-password':
+    case 'auth/invalid-credential':
+      return 'Incorrect email or password.';
+    case 'auth/too-many-requests':
+      return 'Too many attempts. Please try again later.';
+    default:
+      return 'Something went wrong. Please try again.';
+  }
+}
+
 export default function SignInPrompt({ onClose }: SignInPromptProps) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [surferIndex, setSurferIndex] = useState(0);
+  const [mode, setMode] = useState<'signin' | 'signup'>('signup');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [resetSent, setResetSent] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -18,12 +41,30 @@ export default function SignInPrompt({ onClose }: SignInPromptProps) {
     return () => clearInterval(interval);
   }, []);
 
+  const handleEmailSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!email.trim() || !password) return;
+    setError(null);
+    setLoading(true);
+    try {
+      if (mode === 'signup') {
+        await signUpWithEmail(email.trim(), password);
+      } else {
+        await signInWithEmail(email.trim(), password);
+      }
+    } catch (err: unknown) {
+      const code = (err as { code?: string })?.code ?? '';
+      setError(friendlyError(code));
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleGoogleSignIn = async () => {
     setError(null);
     setLoading(true);
     try {
       await signInWithGoogle();
-      // Auth state change will automatically close this via App
     } catch (err: unknown) {
       const message =
         err instanceof Error ? err.message : 'Sign-in failed. Please try again.';
@@ -32,6 +73,30 @@ export default function SignInPrompt({ onClose }: SignInPromptProps) {
         return;
       }
       setError(message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const toggleMode = () => {
+    setMode((m) => (m === 'signin' ? 'signup' : 'signin'));
+    setError(null);
+    setResetSent(false);
+  };
+
+  const handleForgotPassword = async () => {
+    if (!email.trim()) {
+      setError('Enter your email above, then tap "Forgot password?"');
+      return;
+    }
+    setError(null);
+    setLoading(true);
+    try {
+      await resetPassword(email.trim());
+      setResetSent(true);
+    } catch (err: unknown) {
+      const code = (err as { code?: string })?.code ?? '';
+      setError(friendlyError(code));
     } finally {
       setLoading(false);
     }
@@ -48,6 +113,15 @@ export default function SignInPrompt({ onClose }: SignInPromptProps) {
       }}
     >
       <div className="signin-prompt">
+        <div className="signin-prompt-header">
+          <button
+            type="button"
+            className="btn-retro-edit"
+            onClick={onClose}
+          >
+            CLOSE
+          </button>
+        </div>
         <div className="signin-prompt-icon">
           <img
             src={SURFER_EMOJIS[surferIndex].image}
@@ -55,9 +129,13 @@ export default function SignInPrompt({ onClose }: SignInPromptProps) {
             className="signin-surfer-img"
           />
         </div>
-        <h2 className="signin-prompt-title">Sign in to keep journaling</h2>
+        <h2 className="signin-prompt-title">
+          {mode === 'signin' ? 'Sign in to keep journaling' : 'Create account or sign in'}
+        </h2>
         <p className="signin-prompt-text">
-          Create a free account to save unlimited surf sessions.
+          {mode === 'signin'
+            ? 'Save unlimited surf sessions.'
+            : 'Save unlimited surf sessions.'}
         </p>
 
         <button
@@ -83,16 +161,64 @@ export default function SignInPrompt({ onClose }: SignInPromptProps) {
               d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
             />
           </svg>
-          {loading ? 'Signing in…' : 'Sign in with Google'}
+          {loading ? 'Please wait…' : 'Continue with Google'}
+        </button>
+
+        <div className="email-auth-divider">
+          <span>or</span>
+        </div>
+
+        <form className="email-auth-form" onSubmit={handleEmailSubmit} noValidate>
+          <input
+            type="email"
+            className="form-input email-auth-input"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            autoComplete="email"
+            aria-label="Email"
+          />
+          <input
+            type="password"
+            className="form-input email-auth-input"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
+            aria-label="Password"
+          />
+          <button
+            type="submit"
+            className="btn btn-primary email-auth-submit"
+            disabled={loading}
+          >
+            {loading
+              ? 'Please wait…'
+              : mode === 'signin'
+                ? 'Sign in'
+                : 'Create account'}
+          </button>
+        </form>
+
+        {mode === 'signin' && !resetSent && (
+          <button type="button" className="email-auth-toggle" onClick={handleForgotPassword}>
+            Forgot password?
+          </button>
+        )}
+
+        {resetSent && (
+          <p className="reset-sent-msg">Reset link sent! Check your email.</p>
+        )}
+
+        <button type="button" className="email-auth-toggle" onClick={toggleMode}>
+          {mode === 'signin'
+            ? "Don't have an account? Sign up"
+            : 'Already have an account? Sign in'}
         </button>
 
         {error && <p className="login-error">{error}</p>}
 
-        <button className="signin-prompt-dismiss" onClick={onClose}>
-          Maybe later
-        </button>
       </div>
     </div>
   );
 }
-

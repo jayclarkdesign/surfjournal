@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { signInWithGoogle, signOut } from '../firebase';
+import { signOut } from '../firebase';
 
 interface HeaderProps {
   surferImage: string;
@@ -8,6 +8,7 @@ interface HeaderProps {
   isSignedIn: boolean;
   muted: boolean;
   onToggleSound: () => void;
+  onSignIn: () => void;
 }
 
 export default function Header({
@@ -17,6 +18,7 @@ export default function Header({
   isSignedIn,
   muted,
   onToggleSound,
+  onSignIn,
 }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -43,15 +45,8 @@ export default function Header({
     await signOut();
   };
 
-  const handleSignIn = async () => {
-    try {
-      await signInWithGoogle();
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : '';
-      if (!msg.includes('popup-closed-by-user')) {
-        console.error('Sign-in failed:', err);
-      }
-    }
+  const handleSignIn = () => {
+    onSignIn();
   };
 
   return (

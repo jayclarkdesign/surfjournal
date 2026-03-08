@@ -1053,6 +1053,43 @@ body {
   opacity: 0;
 }
 
+.btn-retro-cta.splash-signin-btn {
+  margin-top: var(--space-md);
+  background: #fff;
+  color: var(--color-text);
+  text-shadow: none;
+  box-shadow:
+    0 -4px 0 0 #333,
+    0 4px 0 0 #333,
+    -4px 0 0 0 #333,
+    4px 0 0 0 #333,
+    4px 4px 0 0 #333;
+}
+
+.btn-retro-cta.splash-signin-btn::after {
+  display: none;
+}
+
+.btn-retro-cta.splash-signin-btn:hover {
+  background: #f0f0f0;
+  box-shadow:
+    0 -4px 0 0 #333,
+    0 4px 0 0 #333,
+    -4px 0 0 0 #333,
+    4px 0 0 0 #333,
+    4px 6px 0 0 #333,
+    0 6px 0 0 #333;
+}
+
+.btn-retro-cta.splash-signin-btn:active {
+  background: #e0e0e0;
+  box-shadow:
+    0 -4px 0 0 #333,
+    0 4px 0 0 #333,
+    -4px 0 0 0 #333,
+    4px 0 0 0 #333;
+}
+
 /* ── End splash ──────────────────────────────────────── */
 
 .welcome-logo {
@@ -1522,6 +1559,82 @@ body {
   color: var(--color-text-secondary);
   line-height: 1.5;
   margin-bottom: var(--space-lg);
+}
+
+/* ── Email Auth Form ──────────────────────────────────── */
+.email-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.email-auth-input {
+  text-align: center;
+  font-size: 15px;
+}
+
+.email-auth-submit {
+  width: 100%;
+  font-size: 18px;
+}
+
+.email-auth-toggle {
+  display: block;
+  margin: var(--space-sm) auto 0;
+  padding: 4px 8px;
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.15s ease;
+}
+
+.email-auth-toggle:hover {
+  color: var(--color-text);
+}
+
+.reset-sent-msg {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  color: var(--color-success);
+  text-align: center;
+  margin-top: var(--space-sm);
+}
+
+.email-auth-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: var(--space-md) auto;
+  width: 100%;
+  max-width: 280px;
+}
+
+.email-auth-divider::before,
+.email-auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #ddd;
+}
+
+.email-auth-divider span {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}
+
+.signin-prompt-header {
+  display: flex;
+  justify-content: flex-end;
+  margin: calc(-1 * var(--space-sm)) calc(-1 * var(--space-sm)) var(--space-xs) 0;
 }
 
 .signin-prompt-dismiss {

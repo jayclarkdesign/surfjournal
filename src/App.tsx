@@ -294,6 +294,13 @@ export default function App() {
               >
                 Get started
               </button>
+              <button
+                type="button"
+                className="btn-retro-cta splash-signin-btn splash-entrance splash-delay-3"
+                onClick={() => setShowSignInPrompt(true)}
+              >
+                Sign in
+              </button>
             </div>
           </div>
         ) : (
@@ -359,6 +366,7 @@ export default function App() {
             isSignedIn={!!user}
             muted={muted}
             onToggleSound={handleToggleSound}
+            onSignIn={() => setShowSignInPrompt(true)}
           />
           <main className="app-container">
             <div className="action-buttons-row">
