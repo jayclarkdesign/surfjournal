@@ -224,8 +224,11 @@ export default function App() {
 
   // Auto-close sign-in prompt when user signs in
   const signInSourceRef = useRef<'splash' | 'gate' | null>(null);
+  const prevUserRef = useRef(user);
   useEffect(() => {
-    if (user && showSignInPrompt) {
+    const justSignedIn = user && !prevUserRef.current;
+    prevUserRef.current = user;
+    if (justSignedIn && showSignInPrompt) {
       setShowSignInPrompt(false);
       if (signInSourceRef.current === 'splash') {
         setStarted(true);
