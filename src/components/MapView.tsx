@@ -94,7 +94,7 @@ export default function MapView({ entries, onClose, focusSpot }: MapViewProps) {
       worldCopyJump: false,
       maxBoundsViscosity: 1.0,
       maxBounds: L.latLngBounds([-90, -180], [90, 180]),
-      minZoom: 2,
+      minZoom: 3,
     });
 
     L.control.zoom({ position: 'topright' }).addTo(map);
