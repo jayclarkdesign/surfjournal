@@ -113,17 +113,22 @@ export default function App() {
     { name: '', emojiIndex: 0 }
   );
 
-  // Sync profile from Firestore → localStorage when signed in
+  // Sync profile between Firestore and localStorage when signed in
   const profileSyncedRef = useRef(false);
   useEffect(() => {
-    if (user && firestoreProfile.profile && !profileSyncedRef.current) {
-      setProfileLocal(firestoreProfile.profile);
-      profileSyncedRef.current = true;
-    }
     if (!user) {
       profileSyncedRef.current = false;
+      return;
     }
-  }, [user, firestoreProfile.profile, setProfileLocal]);
+    if (firestoreProfile.loading || profileSyncedRef.current) return;
+
+    if (firestoreProfile.profile) {
+      setProfileLocal(firestoreProfile.profile);
+    } else if (profile.name) {
+      firestoreProfile.saveProfile(profile).catch((err) => console.error('Profile push failed:', err));
+    }
+    profileSyncedRef.current = true;
+  }, [user, firestoreProfile.loading, firestoreProfile.profile, firestoreProfile, profile, setProfileLocal]);
 
   // Wrap setProfile to also persist to Firestore
   const setProfile = useCallback(
