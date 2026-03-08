@@ -91,6 +91,9 @@ export default function MapView({ entries, onClose, focusSpot }: MapViewProps) {
 
     const map = L.map(mapContainer.current, {
       zoomControl: false,
+      worldCopyJump: false,
+      maxBoundsViscosity: 1.0,
+      maxBounds: L.latLngBounds([-90, -180], [90, 180]),
     });
 
     L.control.zoom({ position: 'topright' }).addTo(map);
@@ -98,6 +101,7 @@ export default function MapView({ entries, onClose, focusSpot }: MapViewProps) {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
       maxZoom: 18,
+      noWrap: true,
     }).addTo(map);
 
     spotGroups.forEach((group) => {
