@@ -73,15 +73,17 @@ export default function MapView({ entries, onClose, focusSpot }: MapViewProps) {
     return Array.from(groups.values());
   }, [entries]);
 
-  const { countryCount, spotCount } = useMemo(() => {
+  const { countryCount, spotCount, sessionCount } = useMemo(() => {
     const countries = new Set<string>();
     const spots = new Set<string>();
+    let sessions = 0;
     for (const group of spotGroups) {
       spots.add(group.spotName);
+      sessions += group.entries.length;
       const country = getCountryForSpot(group.spotName);
       if (country) countries.add(country);
     }
-    return { countryCount: countries.size, spotCount: spots.size };
+    return { countryCount: countries.size, spotCount: spots.size, sessionCount: sessions };
   }, [spotGroups]);
 
   useEffect(() => {
@@ -154,6 +156,10 @@ export default function MapView({ entries, onClose, focusSpot }: MapViewProps) {
           <span className="map-stat-divider">&bull;</span>
           <span className="map-stat">
             <strong>{spotCount}</strong> {spotCount === 1 ? 'spot' : 'spots'}
+          </span>
+          <span className="map-stat-divider">&bull;</span>
+          <span className="map-stat">
+            <strong>{sessionCount}</strong> {sessionCount === 1 ? 'session' : 'sessions'}
           </span>
         </div>
       )}
