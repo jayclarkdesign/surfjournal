@@ -103,7 +103,7 @@ export default function Header({
             </div>
           ) : (
             <button className="header-signin-btn" onClick={handleSignIn}>
-              Sign in
+              Save progress
             </button>
           )}
         </div>

@@ -1837,6 +1837,13 @@ body {
   box-shadow: var(--pixel-border-thick);
 }
 
+/* ── Sign-up Nudge ───────────────────────────────────── */
+.signup-nudge {
+  display: flex;
+  justify-content: center;
+  margin: var(--space-md) var(--space-md) var(--space-lg);
+}
+
 /* ── Map Overlay ─────────────────────────────────────── */
 .map-overlay {
   position: fixed;
