@@ -230,14 +230,12 @@ export default function App() {
     prevUserRef.current = user;
     if (justSignedIn && showSignInPrompt) {
       setShowSignInPrompt(false);
-      if (signInSourceRef.current === 'splash') {
-        if (profile.name) {
-          setOnboardingDone(true);
-        }
-        setStarted(true);
-      } else {
+      if (signInSourceRef.current === 'gate') {
         setShowForm(true);
       }
+      // For splash sign-ins: returning users will skip onboarding automatically
+      // via isReturningUser; new users need the surfer picker
+      setStarted(true);
       signInSourceRef.current = null;
     }
   }, [user, showSignInPrompt]);
@@ -312,7 +310,9 @@ export default function App() {
     );
   }
 
-  const needsOnboarding = !onboardingDone && (entries.length === 0 || !profile.name);
+  // Skip onboarding entirely for signed-in users with entries
+  const isReturningUser = !!user && entries.length > 0;
+  const needsOnboarding = !onboardingDone && !isReturningUser && (entries.length === 0 || !profile.name);
 
   return (
     <>
@@ -336,15 +336,8 @@ export default function App() {
                 type="button"
                 className="btn-retro-cta splash-signin-btn splash-entrance splash-delay-3"
                 onClick={() => {
-                  if (user && profile.name) {
-                    setOnboardingDone(true);
-                    handleGetStarted();
-                  } else if (user) {
-                    handleGetStarted();
-                  } else {
-                    signInSourceRef.current = 'splash';
-                    setShowSignInPrompt(true);
-                  }
+                  signInSourceRef.current = 'splash';
+                  setShowSignInPrompt(true);
                 }}
               >
                 Sign in
