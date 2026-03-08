@@ -61,7 +61,8 @@ export function useFirestoreEntries(uid: string | null) {
     async (entry: Entry) => {
       if (!uid) return;
       const docRef = doc(db, 'users', uid, 'entries', entry.id);
-      await setDoc(docRef, entry);
+      const clean = JSON.parse(JSON.stringify(entry));
+      await setDoc(docRef, clean);
     },
     [uid]
   );
@@ -70,7 +71,8 @@ export function useFirestoreEntries(uid: string | null) {
     async (entry: Entry) => {
       if (!uid) return;
       const docRef = doc(db, 'users', uid, 'entries', entry.id);
-      await setDoc(docRef, entry, { merge: true });
+      const clean = JSON.parse(JSON.stringify(entry));
+      await setDoc(docRef, clean, { merge: true });
     },
     [uid]
   );
