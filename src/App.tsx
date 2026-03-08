@@ -113,8 +113,25 @@ export default function App() {
   const [toast, setToast] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [showSignInPrompt, setShowSignInPrompt] = useState(false);
-  const [showMap, setShowMap] = useState(false);
+  const [showMap, setShowMapRaw] = useState(() => window.location.hash === '#map');
   const [mapFocusSpot, setMapFocusSpot] = useState<string | null>(null);
+
+  const setShowMap = useCallback((show: boolean) => {
+    setShowMapRaw(show);
+    if (show) {
+      window.location.hash = '#map';
+    } else {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }, []);
+
+  useEffect(() => {
+    const onHashChange = () => {
+      setShowMapRaw(window.location.hash === '#map');
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
   const [muted, setMuted] = useState(false);
   const [started, setStarted] = useState(false);
   const [onboardingDone, setOnboardingDone] = useState(false);
