@@ -1901,6 +1901,36 @@ body {
   transform: translate(0, 1px);
 }
 
+/* ── Map Stats Badge ─────────────────────────────────── */
+.map-stats-badge {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 510;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-text);
+  color: #fff;
+  padding: 8px 14px;
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: var(--pixel-border);
+  white-space: nowrap;
+}
+
+.map-stat strong {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.map-stat-divider {
+  opacity: 0.4;
+}
+
 /* ── Map Bottom Sheet ────────────────────────────────── */
 .map-bottom-sheet {
   position: fixed;

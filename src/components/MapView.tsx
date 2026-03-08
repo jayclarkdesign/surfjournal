@@ -73,6 +73,17 @@ export default function MapView({ entries, onClose, focusSpot }: MapViewProps) {
     return Array.from(groups.values());
   }, [entries]);
 
+  const { countryCount, spotCount } = useMemo(() => {
+    const countries = new Set<string>();
+    const spots = new Set<string>();
+    for (const group of spotGroups) {
+      spots.add(group.spotName);
+      const country = getCountryForSpot(group.spotName);
+      if (country) countries.add(country);
+    }
+    return { countryCount: countries.size, spotCount: spots.size };
+  }, [spotGroups]);
+
   useEffect(() => {
     if (!mapContainer.current || mapRef.current) return;
 
@@ -134,6 +145,18 @@ export default function MapView({ entries, onClose, focusSpot }: MapViewProps) {
         </svg>
         <span>Back</span>
       </button>
+
+      {spotGroups.length > 0 && (
+        <div className="map-stats-badge">
+          <span className="map-stat">
+            <strong>{countryCount}</strong> {countryCount === 1 ? 'country' : 'countries'}
+          </span>
+          <span className="map-stat-divider">&bull;</span>
+          <span className="map-stat">
+            <strong>{spotCount}</strong> {spotCount === 1 ? 'spot' : 'spots'}
+          </span>
+        </div>
+      )}
 
       {selected && (
         <div className="map-bottom-sheet" onClick={() => setSelected(null)}>
