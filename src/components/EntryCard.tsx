@@ -164,7 +164,19 @@ export default function EntryCard({ entry, onDelete, onUpdate, onOpenMap }: Entr
                 {sortedSpotsForCountry.map((s) => (
                   <option key={s} value={s}>{s}</option>
                 ))}
+                {country && <option value={OTHER_VALUE}>Other spot...</option>}
               </select>
+            )}
+            {country !== OTHER_VALUE && spot === OTHER_VALUE && (
+              <input
+                type="text"
+                className="form-input"
+                placeholder="Enter spot name"
+                value={customSpot}
+                onChange={(e) => setCustomSpot(e.target.value)}
+                aria-label="Custom spot name"
+                style={{ marginTop: 8 }}
+              />
             )}
           </div>
         </div>

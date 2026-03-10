@@ -86,6 +86,17 @@ export default function MapView({ entries, onClose, focusSpot }: MapViewProps) {
     return { countryCount: countries.size, spotCount: spots.size, sessionCount: sessions };
   }, [spotGroups]);
 
+  const { unmappedSpotCount, unmappedSessionCount } = useMemo(() => {
+    const unmappedSpots = new Set<string>();
+    let sessions = 0;
+    for (const entry of entries) {
+      if (getCoordsForSpot(entry.spot)) continue;
+      unmappedSpots.add(entry.spot);
+      sessions += 1;
+    }
+    return { unmappedSpotCount: unmappedSpots.size, unmappedSessionCount: sessions };
+  }, [entries]);
+
   useEffect(() => {
     if (!mapContainer.current || mapRef.current) return;
 
@@ -165,6 +176,15 @@ export default function MapView({ entries, onClose, focusSpot }: MapViewProps) {
           <span className="map-stat-divider">&bull;</span>
           <span className="map-stat">
             <strong>{sessionCount}</strong> {sessionCount === 1 ? 'session' : 'sessions'}
+          </span>
+        </div>
+      )}
+
+      {unmappedSessionCount > 0 && (
+        <div className="map-stats-badge" style={{ top: spotGroups.length > 0 ? 92 : 28 }}>
+          <span className="map-stat">
+            {unmappedSessionCount} {unmappedSessionCount === 1 ? 'session' : 'sessions'} from{' '}
+            {unmappedSpotCount} {unmappedSpotCount === 1 ? 'spot' : 'spots'} not shown on map (no coordinates yet)
           </span>
         </div>
       )}

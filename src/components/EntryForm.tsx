@@ -197,7 +197,20 @@ export default function EntryForm({ onAdd, onToast, onClose, lastEntry }: EntryF
                   {s}
                 </option>
               ))}
+              {country && <option value={OTHER_VALUE}>Other spot...</option>}
             </select>
+          )}
+          {country !== OTHER_VALUE && spot === OTHER_VALUE && (
+            <input
+              type="text"
+              className="form-input"
+              placeholder="Enter spot name"
+              value={customSpot}
+              onChange={(e) => setCustomSpot(e.target.value)}
+              aria-required="true"
+              aria-invalid={!!errors.spot}
+              style={{ marginTop: 8 }}
+            />
           )}
           {errors.spot && (
             <div className="form-error" role="alert">
