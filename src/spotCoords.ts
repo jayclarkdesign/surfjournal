@@ -908,13 +908,14 @@ const SPOT_COORDS: Record<string, [number, number]> = {
 
   // ── United Kingdom ─────────────────────────────────────
   // Cornwall
-  'Newquay (Fistral)': [50.4170, -5.1000],
-  'Newquay (Watergate Bay)': [50.4430, -5.0420],
-  'Newquay (Crantock)': [50.4020, -5.1120],
-  'Newquay (Towan)': [50.4150, -5.0860],
-  'Newquay (Great Western)': [50.4180, -5.0780],
-  'Newquay (Tolcarne)': [50.4190, -5.0760],
-  'Newquay (Whipsiderry)': [50.4490, -5.0520],
+  'Fistral (Newquay)': [50.4170, -5.1000],
+  'Watergate Bay (Newquay)': [50.4430, -5.0420],
+  'Crantock (Newquay)': [50.4020, -5.1120],
+  'Towan (Newquay)': [50.4150, -5.0860],
+  'Great Western (Newquay)': [50.4180, -5.0780],
+  'Lusty Glaze (Newquay)': [50.4240, -5.0710],
+  'Tolcarne (Newquay)': [50.4190, -5.0760],
+  'Whipsiderry (Newquay)': [50.4490, -5.0520],
   'Mawgan Porth': [50.4650, -5.0270],
   'Sennen': [50.0720, -5.6970],
   'Porthtowan': [50.2800, -5.2380],
@@ -1225,5 +1226,8 @@ const SPOT_COORDS: Record<string, [number, number]> = {
  * Returns [lat, lng] or null if unknown.
  */
 export function getCoordsForSpot(spotName: string): [number, number] | null {
-  return SPOT_COORDS[spotName] ?? null;
+  // Backward-compat for older logs that used "Newquay (Spot)" naming.
+  const legacyNewquayMatch = spotName.match(/^Newquay \((.+)\)$/);
+  const canonicalSpot = legacyNewquayMatch ? `${legacyNewquayMatch[1]} (Newquay)` : spotName;
+  return SPOT_COORDS[canonicalSpot] ?? null;
 }

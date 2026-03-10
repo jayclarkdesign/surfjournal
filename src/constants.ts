@@ -993,13 +993,14 @@ export const SPOTS_BY_COUNTRY: Record<string, readonly string[]> = {
     'Constantine Bay',
     'Harlyn Bay',
     'Mawgan Porth',
-    'Newquay (Crantock)',
-    'Newquay (Fistral)',
-    'Newquay (Great Western)',
-    'Newquay (Tolcarne)',
-    'Newquay (Towan)',
-    'Newquay (Watergate Bay)',
-    'Newquay (Whipsiderry)',
+    'Crantock (Newquay)',
+    'Fistral (Newquay)',
+    'Great Western (Newquay)',
+    'Lusty Glaze (Newquay)',
+    'Tolcarne (Newquay)',
+    'Towan (Newquay)',
+    'Watergate Bay (Newquay)',
+    'Whipsiderry (Newquay)',
     'Perranporth',
     'Polzeath',
     'Porthleven',
@@ -1321,8 +1322,12 @@ export const COUNTRIES = Object.keys(SPOTS_BY_COUNTRY);
 
 /** Given a spot name, return the country it belongs to (or empty string). */
 export function getCountryForSpot(spot: string): string {
+  // Backward-compat for older logs that used "Newquay (Spot)" naming.
+  const legacyNewquayMatch = spot.match(/^Newquay \((.+)\)$/);
+  const canonicalSpot = legacyNewquayMatch ? `${legacyNewquayMatch[1]} (Newquay)` : spot;
+
   for (const [country, spots] of Object.entries(SPOTS_BY_COUNTRY)) {
-    if (spots.includes(spot)) return country;
+    if (spots.includes(canonicalSpot)) return country;
   }
   return '';
 }
