@@ -32,7 +32,14 @@ function formatDate(datetime: string): string {
   }
 }
 
-function deriveCountryAndSpot(spot: string) {
+function deriveCountryAndSpot(spot: string, savedCountry?: string) {
+  if (savedCountry && savedCountry !== OTHER_VALUE) {
+    const isKnownSpot = (SPOTS_BY_COUNTRY[savedCountry] ?? []).includes(spot);
+    if (isKnownSpot) {
+      return { country: savedCountry, spot, customSpot: '' };
+    }
+    return { country: savedCountry, spot: OTHER_VALUE, customSpot: spot };
+  }
   const country = getCountryForSpot(spot);
   if (country) {
     return { country, spot, customSpot: '' };
@@ -49,7 +56,7 @@ export default function EntryCard({ entry, onDelete, onUpdate, onOpenMap }: Entr
   const [editing, setEditing] = useState(false);
 
   // Edit state
-  const initial = deriveCountryAndSpot(entry.spot);
+  const initial = deriveCountryAndSpot(entry.spot, entry.country);
   const [country, setCountry] = useState(initial.country);
   const [spot, setSpot] = useState(initial.spot);
   const [customSpot, setCustomSpot] = useState(initial.customSpot);
@@ -77,6 +84,7 @@ export default function EntryCard({ entry, onDelete, onUpdate, onOpenMap }: Entr
       onUpdate({
         ...entry,
         spot: resolvedSpot,
+        country: country && country !== OTHER_VALUE ? country : undefined,
         datetime,
         tide,
         boardType: boardType ?? undefined,
@@ -87,11 +95,11 @@ export default function EntryCard({ entry, onDelete, onUpdate, onOpenMap }: Entr
       });
       setEditing(false);
     },
-    [entry, spot, customSpot, date, time, tide, boardType, boardLength, notes, rating, onUpdate]
+    [entry, spot, customSpot, country, date, time, tide, boardType, boardLength, notes, rating, onUpdate]
   );
 
   const handleCancelEdit = useCallback(() => {
-    const restored = deriveCountryAndSpot(entry.spot);
+    const restored = deriveCountryAndSpot(entry.spot, entry.country);
     setCountry(restored.country);
     setSpot(restored.spot);
     setCustomSpot(restored.customSpot);
@@ -290,7 +298,7 @@ export default function EntryCard({ entry, onDelete, onUpdate, onOpenMap }: Entr
             )}
             <span className="entry-country">
               {(() => {
-                const c = getCountryForSpot(entry.spot);
+                const c = entry.country || getCountryForSpot(entry.spot);
                 const parts: string[] = [];
                 if (c) parts.push(c);
                 parts.push(formatDate(entry.datetime));

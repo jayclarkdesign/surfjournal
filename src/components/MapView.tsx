@@ -80,8 +80,10 @@ export default function MapView({ entries, onClose, focusSpot }: MapViewProps) {
     for (const group of spotGroups) {
       spots.add(group.spotName);
       sessions += group.entries.length;
-      const country = getCountryForSpot(group.spotName);
-      if (country) countries.add(country);
+      for (const entry of group.entries) {
+        const country = entry.country || getCountryForSpot(entry.spot);
+        if (country) countries.add(country);
+      }
     }
     return { countryCount: countries.size, spotCount: spots.size, sessionCount: sessions };
   }, [spotGroups]);
@@ -193,7 +195,7 @@ export default function MapView({ entries, onClose, focusSpot }: MapViewProps) {
         <div className="map-bottom-sheet" onClick={() => setSelected(null)}>
           <div className="map-sheet-content" onClick={(e) => e.stopPropagation()}>
             {selected.entries.map((entry, i) => {
-              const country = getCountryForSpot(entry.spot);
+              const country = entry.country || getCountryForSpot(entry.spot);
               const boardInfo = entry.boardType || entry.boardLength;
               return (
                 <div key={entry.id} className="map-sheet-card">

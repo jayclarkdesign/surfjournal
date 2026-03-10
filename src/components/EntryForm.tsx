@@ -26,10 +26,14 @@ const OTHER_VALUE = '__other__';
 function deriveDefaults(lastEntry: Entry | null) {
   if (!lastEntry) return { country: '', spot: '', customSpot: '', boardType: undefined as BoardType | undefined, boardLength: '' };
 
-  const country = getCountryForSpot(lastEntry.spot);
+  const country = lastEntry.country || getCountryForSpot(lastEntry.spot);
   const base = { boardType: lastEntry.boardType, boardLength: lastEntry.boardLength ?? '' };
   if (country) {
-    return { country, spot: lastEntry.spot, customSpot: '', ...base };
+    const isKnownSpot = (SPOTS_BY_COUNTRY[country] ?? []).includes(lastEntry.spot);
+    if (isKnownSpot) {
+      return { country, spot: lastEntry.spot, customSpot: '', ...base };
+    }
+    return { country, spot: OTHER_VALUE, customSpot: lastEntry.spot, ...base };
   }
   return { country: OTHER_VALUE, spot: OTHER_VALUE, customSpot: lastEntry.spot, ...base };
 }
@@ -71,11 +75,13 @@ export default function EntryForm({ onAdd, onToast, onClose, lastEntry }: EntryF
       if (!validate()) return;
 
       const resolvedSpot = spot === OTHER_VALUE ? customSpot.trim() : spot;
+      const resolvedCountry = country && country !== OTHER_VALUE ? country : undefined;
       const datetime = `${date}T${time}`;
 
       const entry: Entry = {
         id: uuid(),
         spot: resolvedSpot,
+        country: resolvedCountry,
         datetime,
         tide,
         boardType: boardType ?? undefined,
@@ -95,7 +101,7 @@ export default function EntryForm({ onAdd, onToast, onClose, lastEntry }: EntryF
       onToast('Session saved ✓');
       onClose();
     },
-    [spot, customSpot, date, time, tide, boardType, boardLength, notes, rating, onAdd, onToast, onClose, validate]
+    [spot, customSpot, country, date, time, tide, boardType, boardLength, notes, rating, onAdd, onToast, onClose, validate]
   );
 
   const handleReset = useCallback(() => {
