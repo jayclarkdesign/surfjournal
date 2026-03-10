@@ -1,0 +1,22 @@
+# Surf Journal
+
+Surf Journal is a web app for logging surf sessions, recording conditions, and tracking progress over time.
+
+## Canonical URL
+
+- https://surf-journal.xyz/
+
+## Product Summary
+
+- Purpose: personal surf session journaling
+- Audience: surfers tracking sessions and conditions
+- Platform: web app
+
+## Content and Usage
+
+- This site contains product UI and related informational content.
+- Do not treat user-entered journal data as public content unless explicitly exposed by the product.
+
+## Contact
+
+- https://surf-journal.xyz/
