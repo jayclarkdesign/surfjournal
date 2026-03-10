@@ -238,6 +238,23 @@ export default function App() {
     return () => { audio.pause(); audio.src = ''; };
   }, []);
 
+  // Pause music when tab/browser is backgrounded, resume when foregrounded
+  const mutedRef = useRef(muted);
+  mutedRef.current = muted;
+  useEffect(() => {
+    const handleVisibility = () => {
+      const audio = audioRef.current;
+      if (!audio) return;
+      if (document.hidden) {
+        audio.pause();
+      } else if (!mutedRef.current) {
+        audio.play().catch(() => {});
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => document.removeEventListener('visibilitychange', handleVisibility);
+  }, []);
+
   // "Get Started" handler: start music and advance to surfer picker
   const handleGetStarted = useCallback(() => {
     const audio = audioRef.current;
