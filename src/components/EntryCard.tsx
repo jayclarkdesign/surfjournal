@@ -1,4 +1,4 @@
-import { useState, useCallback, type FormEvent } from 'react';
+import { useState, useCallback, useMemo, type FormEvent } from 'react';
 import { SPOTS_BY_COUNTRY, COUNTRIES, TIDES, BOARD_TYPES, getCountryForSpot } from '../constants';
 import { getCoordsForSpot } from '../spotCoords';
 import type { Entry, Tide, BoardType } from '../types';
@@ -62,6 +62,10 @@ export default function EntryCard({ entry, onDelete, onUpdate, onOpenMap }: Entr
   const [rating, setRating] = useState(entry.rating ?? 0);
 
   const spotsForCountry = country && country !== OTHER_VALUE ? SPOTS_BY_COUNTRY[country] ?? [] : [];
+  const sortedSpotsForCountry = useMemo(
+    () => [...spotsForCountry].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' })),
+    [spotsForCountry]
+  );
 
   const handleSave = useCallback(
     (e: FormEvent) => {
@@ -157,7 +161,7 @@ export default function EntryCard({ entry, onDelete, onUpdate, onOpenMap }: Entr
                 <option value="" disabled>
                   {country ? 'Choose a spot…' : 'Select country first'}
                 </option>
-                {spotsForCountry.map((s) => (
+                {sortedSpotsForCountry.map((s) => (
                   <option key={s} value={s}>{s}</option>
                 ))}
               </select>

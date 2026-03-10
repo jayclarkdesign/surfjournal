@@ -1,4 +1,4 @@
-import { useState, useCallback, type FormEvent } from 'react';
+import { useState, useCallback, useMemo, type FormEvent } from 'react';
 import { v4 as uuid } from 'uuid';
 import { SPOTS_BY_COUNTRY, COUNTRIES, TIDES, BOARD_TYPES, getCountryForSpot } from '../constants';
 import type { Entry, Tide, BoardType } from '../types';
@@ -50,6 +50,10 @@ export default function EntryForm({ onAdd, onToast, onClose, lastEntry }: EntryF
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const spotsForCountry = country && country !== OTHER_VALUE ? SPOTS_BY_COUNTRY[country] ?? [] : [];
+  const sortedSpotsForCountry = useMemo(
+    () => [...spotsForCountry].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' })),
+    [spotsForCountry]
+  );
 
   const validate = useCallback((): boolean => {
     const errs: Record<string, string> = {};
@@ -188,7 +192,7 @@ export default function EntryForm({ onAdd, onToast, onClose, lastEntry }: EntryF
               <option value="" disabled>
                 {country ? 'Choose a spot…' : 'Select country first'}
               </option>
-              {spotsForCountry.map((s) => (
+              {sortedSpotsForCountry.map((s) => (
                 <option key={s} value={s}>
                   {s}
                 </option>
