@@ -1318,7 +1318,9 @@ export const SPOTS_BY_COUNTRY: Record<string, readonly string[]> = {
 /** Flat list of all spots (for backward-compat checks like includes()) */
 export const SPOTS: readonly string[] = Object.values(SPOTS_BY_COUNTRY).flat();
 
-export const COUNTRIES = Object.keys(SPOTS_BY_COUNTRY);
+export const COUNTRIES = Object.keys(SPOTS_BY_COUNTRY).sort((a, b) =>
+  a.localeCompare(b, undefined, { sensitivity: 'base' })
+);
 
 /** Given a spot name, return the country it belongs to (or empty string). */
 export function getCountryForSpot(spot: string): string {
