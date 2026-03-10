@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "validate:spots": "python3 scripts/validate_spot_coords.py"
   },
   "dependencies": {
     "firebase": "^12.9.0",
