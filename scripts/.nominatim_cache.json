@@ -20254,6 +20254,1546 @@
   "in|Mangalore Panambur, India": [],
   "in|Mulki, India": [],
   "in|Varkala, India": [],
+  "lk|Ahangama, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-31",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "80650",
+        "state": "Southern Province",
+        "state_district": "Galle District",
+        "town": "Ahangama"
+      },
+      "addresstype": "town",
+      "boundingbox": [
+        "5.9335163",
+        "6.0135163",
+        "80.3222999",
+        "80.4022999"
+      ],
+      "category": "place",
+      "display_name": "Ahangama, Galle District, Southern Province, 80650, Sri Lanka",
+      "importance": 0.1600375013351644,
+      "lat": "5.9735163",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.3622999",
+      "name": "Ahangama",
+      "osm_id": 1941205815,
+      "osm_type": "node",
+      "place_id": 425968024,
+      "place_rank": 18,
+      "type": "town"
+    }
+  ],
+  "lk|Arugam Bay (Baby Point), Sri Lanka": [],
+  "lk|Arugam Bay (Main Point), Sri Lanka": [],
+  "lk|Arugam Bay (Mudu), Sri Lanka": [],
+  "lk|Arugam Bay Baby Point, Sri Lanka": [],
+  "lk|Arugam Bay Main Point, Sri Lanka": [],
+  "lk|Arugam Bay Mudu, Sri Lanka": [],
+  "lk|Bentota, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-31",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "12080",
+        "state": "Southern Province",
+        "state_district": "Galle District",
+        "town": "Bentota"
+      },
+      "addresstype": "town",
+      "boundingbox": [
+        "6.3815276",
+        "6.4615276",
+        "79.9578544",
+        "80.0378544"
+      ],
+      "category": "place",
+      "display_name": "Bentota, Galle District, Southern Province, 12080, Sri Lanka",
+      "importance": 0.16004071488517585,
+      "lat": "6.4215276",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "79.9978544",
+      "name": "Bentota",
+      "osm_id": 1606175319,
+      "osm_type": "node",
+      "place_id": 425796154,
+      "place_rank": 18,
+      "type": "town"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-31",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "county": "Beruwala DS Division",
+        "river": "Bentota",
+        "state": "Southern Province",
+        "state_district": "Galle District"
+      },
+      "addresstype": "river",
+      "boundingbox": [
+        "6.3545636",
+        "6.4422693",
+        "79.9877149",
+        "80.2604565"
+      ],
+      "category": "waterway",
+      "display_name": "Bentota, Beruwala DS Division, Galle District, Southern Province, Sri Lanka",
+      "importance": 0.1600375013351644,
+      "lat": "6.3822823",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.1165229",
+      "name": "Bentota",
+      "osm_id": 11232440,
+      "osm_type": "relation",
+      "place_id": 236363273,
+      "place_rank": 18,
+      "type": "river"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-1",
+        "ISO3166-2-lvl5": "LK-13",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "county": "Walallawita DS Division",
+        "river": "Bentota",
+        "state": "Western Province",
+        "state_district": "Kalutara District",
+        "village": "Yagirala"
+      },
+      "addresstype": "river",
+      "boundingbox": [
+        "6.3663163",
+        "6.3677996",
+        "80.1349907",
+        "80.1524619"
+      ],
+      "category": "waterway",
+      "display_name": "Bentota, Yagirala, Walallawita DS Division, Kalutara District, Western Province, Sri Lanka",
+      "importance": 0.14670416800183103,
+      "lat": "6.3670314",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.1427889",
+      "name": "Bentota",
+      "osm_id": 523420870,
+      "osm_type": "way",
+      "place_id": 235212131,
+      "place_rank": 19,
+      "type": "river"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-31",
+        "beach": "Bentota",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "state": "Southern Province",
+        "state_district": "Galle District",
+        "town": "Bentota"
+      },
+      "addresstype": "beach",
+      "boundingbox": [
+        "6.4174016",
+        "6.4408036",
+        "79.9873030",
+        "79.9964403"
+      ],
+      "category": "natural",
+      "display_name": "Bentota, Galle District, Southern Province, Sri Lanka",
+      "importance": 0.1067148706797894,
+      "lat": "6.4290746",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "79.9943317",
+      "name": "Bentota",
+      "osm_id": 128600426,
+      "osm_type": "way",
+      "place_id": 234522046,
+      "place_rank": 22,
+      "type": "beach"
+    }
+  ],
+  "lk|Crocodile Rock, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-5",
+        "ISO3166-2-lvl5": "LK-52",
+        "bare_rock": "Pankanda Hela",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "state": "Eastern Province",
+        "state_district": "Ampara District",
+        "village": "Ulla"
+      },
+      "addresstype": "bare_rock",
+      "boundingbox": [
+        "6.8188876",
+        "6.8209537",
+        "81.8215370",
+        "81.8241041"
+      ],
+      "category": "natural",
+      "display_name": "Pankanda Hela, Ulla, Ampara District, Eastern Province, Sri Lanka",
+      "importance": 0.10670666742961774,
+      "lat": "6.8199443",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "81.8228848",
+      "name": "Pankanda Hela",
+      "osm_id": 17233384,
+      "osm_type": "relation",
+      "place_id": 233556946,
+      "place_rank": 22,
+      "type": "bare_rock"
+    }
+  ],
+  "lk|Dalawella, Sri Lanka": [],
+  "lk|Dickwella, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "amenity": "Dickwella",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "81200",
+        "residential": "Nilwella",
+        "road": "Matara-Hambantota Road",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "town": "Dikwella"
+      },
+      "addresstype": "amenity",
+      "boundingbox": [
+        "5.9637048",
+        "5.9641722",
+        "80.6939153",
+        "80.6941738"
+      ],
+      "category": "amenity",
+      "display_name": "Dickwella, Matara-Hambantota Road, Nilwella, Dikwella, Matara District, Southern Province, 81200, Sri Lanka",
+      "importance": 3.750133516437045e-05,
+      "lat": "5.9639385",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.6940446",
+      "name": "Dickwella",
+      "osm_id": 317905011,
+      "osm_type": "way",
+      "place_id": 234105218,
+      "place_rank": 30,
+      "type": "bus_station"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-8",
+        "ISO3166-2-lvl5": "LK-81",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "hamlet": "Dickwella State",
+        "postcode": "90000",
+        "state": "Uva Province",
+        "state_district": "Badulla District",
+        "town": "Hali-Ela"
+      },
+      "addresstype": "hamlet",
+      "boundingbox": [
+        "6.9490164",
+        "6.9890164",
+        "80.9926364",
+        "81.0326364"
+      ],
+      "category": "place",
+      "display_name": "Dickwella State, Hali-Ela, Badulla District, Uva Province, 90000, Sri Lanka",
+      "importance": 0.1333826878767071,
+      "lat": "6.9690164",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "81.0126364",
+      "name": "Dickwella State",
+      "osm_id": 6356605676,
+      "osm_type": "node",
+      "place_id": 234156457,
+      "place_rank": 20,
+      "type": "hamlet"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "beach": "Dickwella beach",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "town": "Dikwella"
+      },
+      "addresstype": "beach",
+      "boundingbox": [
+        "5.9602049",
+        "5.9640703",
+        "80.6916836",
+        "80.7004372"
+      ],
+      "category": "natural",
+      "display_name": "Dickwella beach, Dikwella, Matara District, Southern Province, Sri Lanka",
+      "importance": 0.10670416800183105,
+      "lat": "5.9620378",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.6998544",
+      "name": "Dickwella beach",
+      "osm_id": 320947732,
+      "osm_type": "way",
+      "place_id": 234108126,
+      "place_rank": 22,
+      "type": "beach"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "town": "Dikwella",
+        "water": "Dickwella lagoon"
+      },
+      "addresstype": "water",
+      "boundingbox": [
+        "5.9626703",
+        "5.9691694",
+        "80.6911794",
+        "80.6939522"
+      ],
+      "category": "natural",
+      "display_name": "Dickwella lagoon, Dikwella, Matara District, Southern Province, Sri Lanka",
+      "importance": 0.10670416800183105,
+      "lat": "5.9658941",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.6937652",
+      "name": "Dickwella lagoon",
+      "osm_id": 318402035,
+      "osm_type": "way",
+      "place_id": 234101291,
+      "place_rank": 22,
+      "type": "water"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "beach": "Dikwella Beach",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "town": "Dikwella"
+      },
+      "addresstype": "beach",
+      "boundingbox": [
+        "5.9588755",
+        "5.9636737",
+        "80.6863763",
+        "80.6915505"
+      ],
+      "category": "natural",
+      "display_name": "Dikwella Beach, Dikwella, Matara District, Southern Province, Sri Lanka",
+      "importance": 0.10670416800183105,
+      "lat": "5.9612651",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.6868353",
+      "name": "Dikwella Beach",
+      "osm_id": 317928248,
+      "osm_type": "way",
+      "place_id": 234101390,
+      "place_rank": 22,
+      "type": "beach"
+    }
+  ],
+  "lk|Elephant Rock, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-5",
+        "ISO3166-2-lvl5": "LK-52",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "peak": "Elephant Rock",
+        "postcode": "32500",
+        "state": "Eastern Province",
+        "state_district": "Ampara District",
+        "village": "Shastrawela"
+      },
+      "addresstype": "peak",
+      "boundingbox": [
+        "6.8097891",
+        "6.8098891",
+        "81.8241126",
+        "81.8242126"
+      ],
+      "category": "natural",
+      "display_name": "Elephant Rock, Shastrawela, Ampara District, Eastern Province, 32500, Sri Lanka",
+      "importance": 0.16004000076295108,
+      "lat": "6.8098391",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "81.8241626",
+      "name": "Elephant Rock",
+      "osm_id": 10904565869,
+      "osm_type": "node",
+      "place_id": 397008462,
+      "place_rank": 18,
+      "type": "peak"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-5",
+        "ISO3166-2-lvl5": "LK-52",
+        "bare_rock": "Elephant Rock",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "state": "Eastern Province",
+        "state_district": "Ampara District",
+        "village": "Shastrawela"
+      },
+      "addresstype": "bare_rock",
+      "boundingbox": [
+        "6.8091226",
+        "6.8104125",
+        "81.8235071",
+        "81.8249002"
+      ],
+      "category": "natural",
+      "display_name": "Elephant Rock, Shastrawela, Ampara District, Eastern Province, Sri Lanka",
+      "importance": 0.10670666742961774,
+      "lat": "6.8097525",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "81.8242520",
+      "name": "Elephant Rock",
+      "osm_id": 17233385,
+      "osm_type": "relation",
+      "place_id": 235163897,
+      "place_rank": 22,
+      "type": "bare_rock"
+    }
+  ],
+  "lk|Galle (Reefs), Sri Lanka": [],
+  "lk|Galle Reefs, Sri Lanka": [],
+  "lk|Hikkaduwa (Main Reef), Sri Lanka": [],
+  "lk|Hikkaduwa (North Jetty), Sri Lanka": [],
+  "lk|Hikkaduwa (Rivermouth), Sri Lanka": [],
+  "lk|Hikkaduwa Main Reef, Sri Lanka": [],
+  "lk|Hikkaduwa North Jetty, Sri Lanka": [],
+  "lk|Hikkaduwa Rivermouth, Sri Lanka": [],
+  "lk|Hikkaduwa, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-31",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "state": "Southern Province",
+        "state_district": "Galle District",
+        "town": "Hikkaduwa"
+      },
+      "addresstype": "town",
+      "boundingbox": [
+        "6.1068699",
+        "6.1514246",
+        "80.0980570",
+        "80.1383804"
+      ],
+      "category": "place",
+      "display_name": "Hikkaduwa, Galle District, Southern Province, Sri Lanka",
+      "importance": 0.16004237201495383,
+      "lat": "6.1407530",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.1028181",
+      "name": "Hikkaduwa",
+      "osm_id": 1153417683,
+      "osm_type": "way",
+      "place_id": 235476049,
+      "place_rank": 18,
+      "type": "town"
+    }
+  ],
+  "lk|Hiriketiya, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "81200",
+        "road": "Hiriketiya",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "town": "Dikwella"
+      },
+      "addresstype": "road",
+      "boundingbox": [
+        "5.9625143",
+        "5.9660801",
+        "80.7067240",
+        "80.7076648"
+      ],
+      "category": "highway",
+      "display_name": "Hiriketiya, Dikwella, Matara District, Southern Province, 81200, Sri Lanka",
+      "importance": 0.053370834668497714,
+      "lat": "5.9642693",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.7075799",
+      "name": "Hiriketiya",
+      "osm_id": 318399521,
+      "osm_type": "way",
+      "place_id": 235840661,
+      "place_rank": 26,
+      "type": "residential"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "maritime": "Hiriketiya Surf Spot",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "town": "Dikwella"
+      },
+      "addresstype": "maritime",
+      "boundingbox": [
+        "5.9607011",
+        "5.9626805",
+        "80.7068726",
+        "80.7087046"
+      ],
+      "category": "boundary",
+      "display_name": "Hiriketiya Surf Spot, Dikwella, Matara District, Southern Province, Sri Lanka",
+      "importance": 0.06670416800183107,
+      "lat": "5.9615374",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.7077609",
+      "name": "Hiriketiya Surf Spot",
+      "osm_id": 1181982750,
+      "osm_type": "way",
+      "place_id": 235743717,
+      "place_rank": 25,
+      "type": "maritime"
+    }
+  ],
+  "lk|Kabalana, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-31",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "80650",
+        "state": "Southern Province",
+        "state_district": "Galle District",
+        "village": "Kabalana"
+      },
+      "addresstype": "village",
+      "boundingbox": [
+        "5.9587500",
+        "5.9987500",
+        "80.3262661",
+        "80.3662661"
+      ],
+      "category": "place",
+      "display_name": "Kabalana, Galle District, Southern Province, 80650, Sri Lanka",
+      "importance": 0.14670416800183103,
+      "lat": "5.9787500",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.3462661",
+      "name": "Kabalana",
+      "osm_id": 3053007006,
+      "osm_type": "node",
+      "place_id": 235394566,
+      "place_rank": 19,
+      "type": "village"
+    }
+  ],
+  "lk|Lighthouse (A-Bay), Sri Lanka": [],
+  "lk|Lighthouse A-Bay, Sri Lanka": [],
+  "lk|Matara, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "city": "Matara",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "81000",
+        "state": "Southern Province",
+        "state_district": "Matara District"
+      },
+      "addresstype": "city",
+      "boundingbox": [
+        "5.9373907",
+        "5.9581307",
+        "80.5207784",
+        "80.5599800"
+      ],
+      "category": "boundary",
+      "display_name": "Matara, Matara District, Southern Province, 81000, Sri Lanka",
+      "importance": 0.4352756649539807,
+      "lat": "5.9478515",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.5463359",
+      "name": "Matara",
+      "osm_id": 5345072,
+      "osm_type": "relation",
+      "place_id": 235021547,
+      "place_rank": 16,
+      "type": "administrative"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "city": "Matara",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "81000",
+        "state": "Southern Province",
+        "state_district": "Matara District"
+      },
+      "addresstype": "city",
+      "boundingbox": [
+        "5.7878220",
+        "6.1078220",
+        "80.3882919",
+        "80.7082919"
+      ],
+      "category": "place",
+      "display_name": "Matara, Matara District, Southern Province, 81000, Sri Lanka",
+      "importance": 0.4352756649539807,
+      "lat": "5.9478220",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.5482919",
+      "name": "Matara",
+      "osm_id": 3639539242,
+      "osm_type": "node",
+      "place_id": 425968091,
+      "place_rank": 16,
+      "type": "city"
+    }
+  ],
+  "lk|Midigama (Lazy Left), Sri Lanka": [],
+  "lk|Midigama (Lazy Right), Sri Lanka": [],
+  "lk|Midigama Lazy Left, Sri Lanka": [],
+  "lk|Midigama Lazy Right, Sri Lanka": [],
+  "lk|Midigama, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "87100",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "village": "Midigama"
+      },
+      "addresstype": "village",
+      "boundingbox": [
+        "5.9452216",
+        "5.9852216",
+        "80.3709468",
+        "80.4109468"
+      ],
+      "category": "place",
+      "display_name": "Midigama, Matara District, Southern Province, 87100, Sri Lanka",
+      "importance": 0.14670416800183103,
+      "lat": "5.9652216",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.3909468",
+      "name": "Midigama",
+      "osm_id": 1941205822,
+      "osm_type": "node",
+      "place_id": 235142521,
+      "place_rank": 19,
+      "type": "village"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "beach": "midigama",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "village": "Midigama"
+      },
+      "addresstype": "beach",
+      "boundingbox": [
+        "5.9641036",
+        "5.9652163",
+        "80.3889068",
+        "80.3915442"
+      ],
+      "category": "natural",
+      "display_name": "midigama, Midigama, Matara District, Southern Province, Sri Lanka",
+      "importance": 0.10670416800183105,
+      "lat": "5.9647155",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.3908414",
+      "name": "midigama",
+      "osm_id": 331628697,
+      "osm_type": "way",
+      "place_id": 235275227,
+      "place_rank": 22,
+      "type": "beach"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "87100",
+        "railway": "Midigama",
+        "road": "Indhana Road",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "village": "Midigama"
+      },
+      "addresstype": "railway",
+      "boundingbox": [
+        "5.9601656",
+        "5.9701656",
+        "80.3864881",
+        "80.3964881"
+      ],
+      "category": "railway",
+      "display_name": "Midigama, Indhana Road, Midigama, Matara District, Southern Province, 87100, Sri Lanka",
+      "importance": 3.750133516437045e-05,
+      "lat": "5.9651656",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.3914881",
+      "name": "Midigama",
+      "osm_id": 1685576493,
+      "osm_type": "node",
+      "place_id": 235440982,
+      "place_rank": 30,
+      "type": "station"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "87100",
+        "railway": "Midigama",
+        "road": "Indhana Road",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "village": "Midigama"
+      },
+      "addresstype": "railway",
+      "boundingbox": [
+        "5.9651678",
+        "5.9652678",
+        "80.3914818",
+        "80.3915818"
+      ],
+      "category": "railway",
+      "display_name": "Midigama, Indhana Road, Midigama, Matara District, Southern Province, 87100, Sri Lanka",
+      "importance": 3.750133516437045e-05,
+      "lat": "5.9652178",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.3915318",
+      "name": "Midigama",
+      "osm_id": 12684885947,
+      "osm_type": "node",
+      "place_id": 402369006,
+      "place_rank": 30,
+      "type": "stop"
+    }
+  ],
+  "lk|Mirissa, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "81740",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "town": "Mirissa"
+      },
+      "addresstype": "town",
+      "boundingbox": [
+        "5.9093634",
+        "5.9893634",
+        "80.4158128",
+        "80.4958128"
+      ],
+      "category": "place",
+      "display_name": "Mirissa, Matara District, Southern Province, 81740, Sri Lanka",
+      "importance": 0.16004000076295108,
+      "lat": "5.9493634",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.4558128",
+      "name": "Mirissa",
+      "osm_id": 50769618,
+      "osm_type": "node",
+      "place_id": 425967902,
+      "place_rank": 18,
+      "type": "town"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "city": "Matara",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "81740",
+        "railway": "Mirissa",
+        "road": "Udupila Road",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "town": "Mirissa"
+      },
+      "addresstype": "railway",
+      "boundingbox": [
+        "5.9516902",
+        "5.9616902",
+        "80.4684963",
+        "80.4784963"
+      ],
+      "category": "railway",
+      "display_name": "Mirissa, Udupila Road, Matara, Mirissa, Matara District, Southern Province, 81740, Sri Lanka",
+      "importance": 0.12743869505990896,
+      "lat": "5.9566902",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.4734963",
+      "name": "Mirissa",
+      "osm_id": 3092545086,
+      "osm_type": "node",
+      "place_id": 235103727,
+      "place_rank": 30,
+      "type": "station"
+    }
+  ],
+  "lk|Mount Lavinia, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-1",
+        "ISO3166-2-lvl5": "LK-11",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "10370",
+        "railway": "Mount Lavinia",
+        "road": "Station Road",
+        "state": "Western Province",
+        "state_district": "Colombo District",
+        "suburb": "Ratmalana",
+        "town": "Dehiwala"
+      },
+      "addresstype": "railway",
+      "boundingbox": [
+        "6.8315667",
+        "6.8318840",
+        "79.8625884",
+        "79.8629652"
+      ],
+      "category": "railway",
+      "display_name": "Mount Lavinia, Station Road, Ratmalana, Dehiwala, Colombo District, Western Province, 10370, Sri Lanka",
+      "importance": 5.683146410310548e-05,
+      "lat": "6.8317254",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "79.8628396",
+      "name": "Mount Lavinia",
+      "osm_id": 6025361,
+      "osm_type": "relation",
+      "place_id": 234802334,
+      "place_rank": 30,
+      "type": "station"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-1",
+        "ISO3166-2-lvl5": "LK-11",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "10370",
+        "railway": "Mount Lavinia",
+        "road": "Station Road",
+        "state": "Western Province",
+        "state_district": "Colombo District",
+        "suburb": "Ratmalana",
+        "town": "Dehiwala"
+      },
+      "addresstype": "railway",
+      "boundingbox": [
+        "6.8316599",
+        "6.8317599",
+        "79.8626419",
+        "79.8627419"
+      ],
+      "category": "railway",
+      "display_name": "Mount Lavinia, Station Road, Ratmalana, Dehiwala, Colombo District, Western Province, 10370, Sri Lanka",
+      "importance": 5.683146410310548e-05,
+      "lat": "6.8317099",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "79.8626919",
+      "name": "Mount Lavinia",
+      "osm_id": 12681234994,
+      "osm_type": "node",
+      "place_id": 402293298,
+      "place_rank": 30,
+      "type": "stop"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-1",
+        "ISO3166-2-lvl5": "LK-11",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "highway": "Mount Lavinia",
+        "postcode": "10370",
+        "quarter": "Ratmalana North",
+        "road": "Galle Road",
+        "state": "Western Province",
+        "state_district": "Colombo District",
+        "suburb": "Ratmalana",
+        "town": "Dehiwala"
+      },
+      "addresstype": "highway",
+      "boundingbox": [
+        "6.8334879",
+        "6.8335879",
+        "79.8671998",
+        "79.8672998"
+      ],
+      "category": "highway",
+      "display_name": "Mount Lavinia, Galle Road, Ratmalana North, Ratmalana, Dehiwala, Colombo District, Western Province, 10370, Sri Lanka",
+      "importance": 5.683146410310548e-05,
+      "lat": "6.8335379",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "79.8672498",
+      "name": "Mount Lavinia",
+      "osm_id": 621917718,
+      "osm_type": "node",
+      "place_id": 235460502,
+      "place_rank": 30,
+      "type": "bus_stop"
+    }
+  ],
+  "lk|Nilaveli, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-5",
+        "ISO3166-2-lvl5": "LK-53",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "31010",
+        "state": "Eastern Province",
+        "state_district": "Trincomalee District",
+        "village": "Nilaveli"
+      },
+      "addresstype": "village",
+      "boundingbox": [
+        "8.6615446",
+        "8.7015446",
+        "81.1716079",
+        "81.2116079"
+      ],
+      "category": "place",
+      "display_name": "Nilaveli, Trincomalee District, Eastern Province, 31010, Sri Lanka",
+      "importance": 0.22742205121143227,
+      "lat": "8.6815446",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "81.1916079",
+      "name": "Nilaveli",
+      "osm_id": 4254145895,
+      "osm_type": "node",
+      "place_id": 232592443,
+      "place_rank": 19,
+      "type": "village"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-5",
+        "ISO3166-2-lvl5": "LK-53",
+        "city": "Trincomalee",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "sand": "nilaveli",
+        "state": "Eastern Province",
+        "state_district": "Trincomalee District"
+      },
+      "addresstype": "sand",
+      "boundingbox": [
+        "8.6625618",
+        "8.6641103",
+        "81.1835419",
+        "81.1889278"
+      ],
+      "category": "natural",
+      "display_name": "nilaveli, Trincomalee, Trincomalee District, Eastern Province, Sri Lanka",
+      "importance": 0.1067238078889143,
+      "lat": "8.6632937",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "81.1872263",
+      "name": "nilaveli",
+      "osm_id": 1246257098,
+      "osm_type": "way",
+      "place_id": 233197244,
+      "place_rank": 22,
+      "type": "sand"
+    }
+  ],
+  "lk|Okanda, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-5",
+        "ISO3166-2-lvl5": "LK-52",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "state": "Eastern Province",
+        "state_district": "Ampara District",
+        "village": "Okanda"
+      },
+      "addresstype": "village",
+      "boundingbox": [
+        "6.6319281",
+        "6.6719281",
+        "81.7502815",
+        "81.7902815"
+      ],
+      "category": "place",
+      "display_name": "Okanda, Ampara District, Eastern Province, Sri Lanka",
+      "importance": 0.14670416800183103,
+      "lat": "6.6519281",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "81.7702815",
+      "name": "Okanda",
+      "osm_id": 4450078535,
+      "osm_type": "node",
+      "place_id": 235764339,
+      "place_rank": 19,
+      "type": "village"
+    }
+  ],
+  "lk|Panama (Rights), Sri Lanka": [],
+  "lk|Panama Rights, Sri Lanka": [],
+  "lk|Peanut Farm, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-5",
+        "ISO3166-2-lvl5": "LK-52",
+        "beach": "Peanut Farm Beach",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "state": "Eastern Province",
+        "state_district": "Ampara District",
+        "village": "Shastrawela"
+      },
+      "addresstype": "beach",
+      "boundingbox": [
+        "6.7833408",
+        "6.8095528",
+        "81.8183077",
+        "81.8248342"
+      ],
+      "category": "natural",
+      "display_name": "Peanut Farm Beach, Shastrawela, Ampara District, Eastern Province, Sri Lanka",
+      "importance": 0.10670666742961774,
+      "lat": "6.7963820",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "81.8209862",
+      "name": "Peanut Farm Beach",
+      "osm_id": 18669419,
+      "osm_type": "relation",
+      "place_id": 399025124,
+      "place_rank": 22,
+      "type": "beach"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-5",
+        "ISO3166-2-lvl5": "LK-52",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "maritime": "Peanut Farm Surf Spot",
+        "state": "Eastern Province",
+        "state_district": "Ampara District"
+      },
+      "addresstype": "maritime",
+      "boundingbox": [
+        "6.7834672",
+        "6.7843189",
+        "81.8192597",
+        "81.8207288"
+      ],
+      "category": "boundary",
+      "display_name": "Peanut Farm Surf Spot, Ampara District, Eastern Province, Sri Lanka",
+      "importance": 0.06670666742961776,
+      "lat": "6.7838975",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "81.8199963",
+      "name": "Peanut Farm Surf Spot",
+      "osm_id": 1182031928,
+      "osm_type": "way",
+      "place_id": 235050187,
+      "place_rank": 25,
+      "type": "maritime"
+    }
+  ],
+  "lk|Pottuvil Lagoon Mouth, Sri Lanka": [],
+  "lk|Pottuvil Point, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-5",
+        "ISO3166-2-lvl5": "LK-52",
+        "beach": "Pottuvil Fishing Point",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "state": "Eastern Province",
+        "state_district": "Ampara District",
+        "village": "Arugam Bay"
+      },
+      "addresstype": "beach",
+      "boundingbox": [
+        "6.8392762",
+        "6.8522148",
+        "81.8315779",
+        "81.8361108"
+      ],
+      "category": "natural",
+      "display_name": "Pottuvil Fishing Point, Arugam Bay, Ampara District, Eastern Province, Sri Lanka",
+      "importance": 0.10670416800183105,
+      "lat": "6.8457689",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "81.8318288",
+      "name": "Pottuvil Fishing Point",
+      "osm_id": 176944112,
+      "osm_type": "way",
+      "place_id": 235751883,
+      "place_rank": 22,
+      "type": "beach"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-5",
+        "ISO3166-2-lvl5": "LK-52",
+        "beach": "Pottuvil Point Beach",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "state": "Eastern Province",
+        "state_district": "Ampara District",
+        "town": "Pottuvil"
+      },
+      "addresstype": "beach",
+      "boundingbox": [
+        "6.8851368",
+        "6.8981755",
+        "81.8415790",
+        "81.8483886"
+      ],
+      "category": "natural",
+      "display_name": "Pottuvil Point Beach, Pottuvil, Ampara District, Eastern Province, Sri Lanka",
+      "importance": 0.106700128938735,
+      "lat": "6.8914556",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "81.8445947",
+      "name": "Pottuvil Point Beach",
+      "osm_id": 1051864109,
+      "osm_type": "way",
+      "place_id": 234785115,
+      "place_rank": 22,
+      "type": "beach"
+    }
+  ],
+  "lk|Talalla, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "81180",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "village": "Talalla"
+      },
+      "addresstype": "village",
+      "boundingbox": [
+        "5.9282175",
+        "5.9682175",
+        "80.6074640",
+        "80.6474640"
+      ],
+      "category": "place",
+      "display_name": "Talalla, Matara District, Southern Province, 81180, Sri Lanka",
+      "importance": 0.14670416800183103,
+      "lat": "5.9482175",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.6274640",
+      "name": "Talalla",
+      "osm_id": 1813587947,
+      "osm_type": "node",
+      "place_id": 234463022,
+      "place_rank": 19,
+      "type": "village"
+    }
+  ],
+  "lk|The Rock (Ahangama), Sri Lanka": [],
+  "lk|The Rock Ahangama, Sri Lanka": [],
+  "lk|The Wedge, Sri Lanka": [],
+  "lk|Unawatuna, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-31",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "80600",
+        "state": "Southern Province",
+        "state_district": "Galle District",
+        "suburb": "Unawatuna",
+        "village": "Rumassala"
+      },
+      "addresstype": "suburb",
+      "boundingbox": [
+        "6.0001774",
+        "6.0401774",
+        "80.2274836",
+        "80.2674836"
+      ],
+      "category": "place",
+      "display_name": "Unawatuna, Rumassala, Galle District, Southern Province, 80600, Sri Lanka",
+      "importance": 0.14670666742961772,
+      "lat": "6.0201774",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.2474836",
+      "name": "Unawatuna",
+      "osm_id": 1982730857,
+      "osm_type": "node",
+      "place_id": 235228962,
+      "place_rank": 19,
+      "type": "suburb"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-31",
+        "beach": "Unawatuna",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "state": "Southern Province",
+        "state_district": "Galle District",
+        "suburb": "Unawatuna",
+        "village": "Rumassala"
+      },
+      "addresstype": "beach",
+      "boundingbox": [
+        "6.0065370",
+        "6.0098602",
+        "80.2434417",
+        "80.2521758"
+      ],
+      "category": "natural",
+      "display_name": "Unawatuna, Rumassala, Galle District, Southern Province, Sri Lanka",
+      "importance": 0.10670666742961774,
+      "lat": "6.0081669",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.2443683",
+      "name": "Unawatuna",
+      "osm_id": 303723769,
+      "osm_type": "way",
+      "place_id": 233392212,
+      "place_rank": 22,
+      "type": "beach"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-31",
+        "city": "Galle",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "hamlet": "Makuluwa Junction",
+        "postcode": "80000",
+        "road": "Suradmarama Road",
+        "state": "Southern Province",
+        "state_district": "Galle District",
+        "tourism": "unawatuna"
+      },
+      "addresstype": "tourism",
+      "boundingbox": [
+        "6.0360706",
+        "6.0366081",
+        "80.2377972",
+        "80.2382854"
+      ],
+      "category": "tourism",
+      "display_name": "unawatuna, Suradmarama Road, Makuluwa Junction, Galle, Galle District, Southern Province, 80000, Sri Lanka",
+      "importance": 5.6498817425757494e-05,
+      "lat": "6.0363400",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.2379432",
+      "name": "unawatuna",
+      "osm_id": 589115397,
+      "osm_type": "way",
+      "place_id": 235431261,
+      "place_rank": 30,
+      "type": "hotel"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-31",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "80600",
+        "railway": "Unawatuna",
+        "road": "Heenatigala Road",
+        "state": "Southern Province",
+        "state_district": "Galle District",
+        "suburb": "Magalle",
+        "village": "Heenatigala Junction"
+      },
+      "addresstype": "railway",
+      "boundingbox": [
+        "6.0170651",
+        "6.0270651",
+        "80.2442172",
+        "80.2542172"
+      ],
+      "category": "railway",
+      "display_name": "Unawatuna, Heenatigala Road, Magalle, Heenatigala Junction, Galle District, Southern Province, 80600, Sri Lanka",
+      "importance": 4.0000762951049326e-05,
+      "lat": "6.0220651",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.2492172",
+      "name": "Unawatuna",
+      "osm_id": 1139248175,
+      "osm_type": "node",
+      "place_id": 235375094,
+      "place_rank": 30,
+      "type": "station"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-31",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "80600",
+        "railway": "Unawatuna",
+        "road": "Heenatigala Road",
+        "state": "Southern Province",
+        "state_district": "Galle District",
+        "suburb": "Magalle",
+        "village": "Heenatigala Junction"
+      },
+      "addresstype": "railway",
+      "boundingbox": [
+        "6.0219684",
+        "6.0220684",
+        "80.2491262",
+        "80.2492262"
+      ],
+      "category": "railway",
+      "display_name": "Unawatuna, Heenatigala Road, Magalle, Heenatigala Junction, Galle District, Southern Province, 80600, Sri Lanka",
+      "importance": 4.0000762951049326e-05,
+      "lat": "6.0220184",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.2491762",
+      "name": "Unawatuna",
+      "osm_id": 12684863719,
+      "osm_type": "node",
+      "place_id": 402379025,
+      "place_rank": 30,
+      "type": "stop"
+    }
+  ],
+  "lk|Weligama Bay, Sri Lanka": [
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "city": "Matara",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "81740",
+        "road": "Modarawatta Road",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "tourism": "Weligama Bay Eco Villa",
+        "village": "Polwathumodara"
+      },
+      "addresstype": "tourism",
+      "boundingbox": [
+        "5.9655710",
+        "5.9656710",
+        "80.4531039",
+        "80.4532039"
+      ],
+      "category": "tourism",
+      "display_name": "Weligama Bay Eco Villa, Modarawatta Road, Matara, Polwathumodara, Matara District, Southern Province, 81740, Sri Lanka",
+      "importance": 4.0000762951049326e-05,
+      "lat": "5.9656210",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.4531539",
+      "name": "Weligama Bay Eco Villa",
+      "osm_id": 11601297870,
+      "osm_type": "node",
+      "place_id": 234991424,
+      "place_rank": 30,
+      "type": "guest_house"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "city": "Matara",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "house_number": "736",
+        "postcode": "81700",
+        "road": "Colombo\u2013Matara Road",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "tourism": "Parangi Weligama Bay",
+        "village": "Peleana"
+      },
+      "addresstype": "tourism",
+      "boundingbox": [
+        "5.9719699",
+        "5.9730475",
+        "80.4400886",
+        "80.4406980"
+      ],
+      "category": "tourism",
+      "display_name": "Parangi Weligama Bay, 736, Colombo\u2013Matara Road, Matara, Peleana, Matara District, Southern Province, 81700, Sri Lanka",
+      "importance": 3.750133516437045e-05,
+      "lat": "5.9726712",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.4404687",
+      "name": "Parangi Weligama Bay",
+      "osm_id": 1057690300,
+      "osm_type": "way",
+      "place_id": 235310627,
+      "place_rank": 30,
+      "type": "hotel"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "city": "Matara",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "house_number": "700",
+        "postcode": "81700",
+        "road": "Colombo\u2013Matara Road",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "tourism": "Weligama Bay Marriott Resort & Spa",
+        "town": "Weligama"
+      },
+      "addresstype": "tourism",
+      "boundingbox": [
+        "5.9726679",
+        "5.9733794",
+        "80.4389769",
+        "80.4398853"
+      ],
+      "category": "tourism",
+      "display_name": "Weligama Bay Marriott Resort & Spa, 700, Colombo\u2013Matara Road, Matara, Weligama, Matara District, Southern Province, 81700, Sri Lanka",
+      "importance": 3.750133516437045e-05,
+      "lat": "5.9729789",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.4395631",
+      "name": "Weligama Bay Marriott Resort & Spa",
+      "osm_id": 821891423,
+      "osm_type": "way",
+      "place_id": 233091579,
+      "place_rank": 30,
+      "type": "hotel"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "city": "Matara",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "81700",
+        "road": "Colombo\u2013Matara Road",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "tourism": "Weligama Bay Resort",
+        "village": "Peleana"
+      },
+      "addresstype": "tourism",
+      "boundingbox": [
+        "5.9728296",
+        "5.9731665",
+        "80.4399756",
+        "80.4404521"
+      ],
+      "category": "tourism",
+      "display_name": "Weligama Bay Resort, Colombo\u2013Matara Road, Matara, Peleana, Matara District, Southern Province, 81700, Sri Lanka",
+      "importance": 3.750133516437045e-05,
+      "lat": "5.9729955",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.4402139",
+      "name": "Weligama Bay Resort",
+      "osm_id": 993576452,
+      "osm_type": "way",
+      "place_id": 235220107,
+      "place_rank": 30,
+      "type": "hotel"
+    },
+    {
+      "address": {
+        "ISO3166-2-lvl4": "LK-3",
+        "ISO3166-2-lvl5": "LK-32",
+        "country": "Sri Lanka",
+        "country_code": "lk",
+        "postcode": "81700",
+        "road": "Bay Beach Hotel Road",
+        "shop": "Weligama bay dive centre",
+        "state": "Southern Province",
+        "state_district": "Matara District",
+        "suburb": "Kumbalgama"
+      },
+      "addresstype": "shop",
+      "boundingbox": [
+        "5.9605243",
+        "5.9606243",
+        "80.4196704",
+        "80.4197704"
+      ],
+      "category": "shop",
+      "display_name": "Weligama bay dive centre, Bay Beach Hotel Road, Kumbalgama, Matara District, Southern Province, 81700, Sri Lanka",
+      "importance": 3.750133516437045e-05,
+      "lat": "5.9605743",
+      "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "lon": "80.4197204",
+      "name": "Weligama bay dive centre",
+      "osm_id": 5356008921,
+      "osm_type": "node",
+      "place_id": 234174226,
+      "place_rank": 30,
+      "type": "sports"
+    }
+  ],
+  "lk|Whiskey Point, Sri Lanka": [],
   "mx|Barra de la Cruz, Mexico": [
     {
       "address": {

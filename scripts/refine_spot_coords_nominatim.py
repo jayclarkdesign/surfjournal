@@ -36,6 +36,7 @@ USER_AGENT = "surf-journal-coord-refiner/1.0 (local-dev)"
 
 
 COUNTRY_TO_ISO2 = {
+    "Sri Lanka": "lk",
     "Australia": "au",
     "Indonesia": "id",
     "United States": "us",

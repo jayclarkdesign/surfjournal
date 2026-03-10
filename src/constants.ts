@@ -15,6 +15,8 @@ export const SPOTS_BY_COUNTRY: Record<string, readonly string[]> = {
     'Lighthouse (A-Bay)',
     'Pottuvil Lagoon Mouth',
     // South coast
+    'Marshmallow',
+    'Gas Station',
     'Hiriketiya',
     'Dickwella',
     'Talalla',
@@ -26,7 +28,7 @@ export const SPOTS_BY_COUNTRY: Record<string, readonly string[]> = {
     'Midigama',
     'Ahangama',
     'Kabalana',
-    'The Rock (Ahangama)',
+    "Devil's Rock / The Rock (Ahangama)",
     'Unawatuna',
     'Dalawella',
     'Galle (Reefs)',
