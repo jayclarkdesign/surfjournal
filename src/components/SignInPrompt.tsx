@@ -130,7 +130,7 @@ export default function SignInPrompt({ onClose }: SignInPromptProps) {
           />
         </div>
         <h2 className="signin-prompt-title">
-          {mode === 'signin' ? 'Sign in to keep journaling' : 'Create account or sign in'}
+          {mode === 'signin' ? 'Sign in to keep journaling' : 'Create an account to save your progress'}
         </h2>
         <p className="signin-prompt-text">
           {mode === 'signin'

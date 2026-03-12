@@ -146,6 +146,7 @@ export default function App() {
   const [toast, setToast] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [showSignInPrompt, setShowSignInPrompt] = useState(false);
+  const [autoSignInNudgePending, setAutoSignInNudgePending] = useState(false);
   const [showMap, setShowMapRaw] = useState(() => window.location.hash === '#map');
   const [mapFocusSpot, setMapFocusSpot] = useState<string | null>(null);
 
@@ -304,8 +305,27 @@ export default function App() {
       // via isReturningUser; new users need the surfer picker
       setStarted(true);
       signInSourceRef.current = null;
+      setAutoSignInNudgePending(false);
     }
   }, [user, showSignInPrompt]);
+
+  // Skip onboarding entirely for signed-in users with entries
+  const isReturningUser = !!user && entries.length > 0;
+  const needsOnboarding = !onboardingDone && !isReturningUser && (entries.length === 0 || !profile.name);
+
+  // Nudge signed-out users to save progress shortly after first entry
+  useEffect(() => {
+    if (!autoSignInNudgePending || user) return;
+    if (needsOnboarding || showForm || showSignInPrompt || showMap) return;
+
+    const timer = window.setTimeout(() => {
+      signInSourceRef.current = null;
+      setShowSignInPrompt(true);
+      setAutoSignInNudgePending(false);
+    }, 1800);
+
+    return () => window.clearTimeout(timer);
+  }, [autoSignInNudgePending, user, needsOnboarding, showForm, showSignInPrompt, showMap]);
 
   // Gate new entries behind sign-in after the first free one
   const handleNewEntry = useCallback(() => {
@@ -329,6 +349,7 @@ export default function App() {
       }
       if (entries.length === 0) {
         setOnboardingDone(true);
+        if (!user) setAutoSignInNudgePending(true);
       }
     },
     [user, firestore, setLocalEntries, entries.length]
@@ -376,10 +397,6 @@ export default function App() {
       </div>
     );
   }
-
-  // Skip onboarding entirely for signed-in users with entries
-  const isReturningUser = !!user && entries.length > 0;
-  const needsOnboarding = !onboardingDone && !isReturningUser && (entries.length === 0 || !profile.name);
 
   return (
     <>
