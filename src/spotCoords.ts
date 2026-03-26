@@ -928,6 +928,9 @@ const SPOT_COORDS: Record<string, [number, number]> = {
   'Constantine Bay': [50.5340, -5.0040],
   'Praa Sands': [50.1010, -5.3910],
   'Porthleven': [50.0850, -5.3170],
+  'Porthmeor (St Ives)': [50.2170, -5.4838],
+  // Inland wave pool (Bristol area)
+  'The Wave': [51.5395, -2.6182],
   // Devon
   'Croyde': [51.1200, -4.2390],
   'Woolacombe': [51.1580, -4.2070],
@@ -944,6 +947,7 @@ const SPOT_COORDS: Record<string, [number, number]> = {
   'Langland Bay': [51.5700, -3.9860],
   'Caswell Bay': [51.5710, -3.9730],
   // Scotland
+  'Lost Shore': [56.0456, -3.4185],
   'Thurso East': [58.5950, -3.5080],
   'Thurso (Brims Ness)': [58.6120, -3.6350],
   'Sandside Bay': [58.5780, -3.7750],

@@ -1004,6 +1004,7 @@ export const SPOTS_BY_COUNTRY: Record<string, readonly string[]> = {
     'Perranporth',
     'Polzeath',
     'Porthleven',
+    'Porthmeor (St Ives)',
     'Porthtowan',
     'Praa Sands',
     'Sennen',
@@ -1014,6 +1015,8 @@ export const SPOTS_BY_COUNTRY: Record<string, readonly string[]> = {
     'Lynmouth',
     'Saunton',
     'Woolacombe',
+    // Inland wave pool (England)
+    'The Wave',
     // Pembrokeshire
     'Freshwater West',
     'Manorbier',
@@ -1024,6 +1027,7 @@ export const SPOTS_BY_COUNTRY: Record<string, readonly string[]> = {
     'Langland Bay',
     'Llangennith (Rhossili)',
     // Scotland
+    'Lost Shore',
     'Lewis (Dalmore)',
     'Machrihanish',
     'Pease Bay',
